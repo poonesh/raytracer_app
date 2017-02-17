@@ -7,7 +7,7 @@ import sys
 
 class Triangle():
 
-	def __init__(self, a= Vector(1.0, 0.0, 0.0), b= Vector(0.0, 0.0, 1.0), c= Vector(0.0, 1.0, 0.0), color=Vector(255, 0, 0), ka = 0, kd = 0):
+	def __init__(self, a= Vector(1.0, 0.0, 0.0), b= Vector(0.0, 0.0, 1.0), c= Vector(0.0, 1.0, 0.0), color=Vector(255, 0, 0), ka = 0, kd = 0, material="normal"):
 		self.a = a
 		self.b = b
 		self.c = c
@@ -17,6 +17,7 @@ class Triangle():
 		ab_vector = self.b.clone().sub(self.a.clone())
 		ac_vector = self.c.clone().sub(self.a.clone())
 		self.normal = (ab_vector.clone().cross(ac_vector))
+		self.material = material
 		
 	
 	

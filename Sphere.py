@@ -15,12 +15,13 @@ def solve_quadratic(a, b, c):
 
 class Sphere():
 
-	def __init__(self, position= Vector(0, 0, 0), radius = 1.0, color=Vector(0, 0, 255), ka = 0, kd = 0):
+	def __init__(self, position= Vector(0, 0, 0), radius = 1.0, color=Vector(0, 0, 255), ka = 0, kd = 0, material="normal"):
 		self.position = position
 		self.radius = radius
 		self.color = color
 		self.ka = ka  # the surface's coefficient of ambient reflection  (0<= ka <= 1)
 		self.kd = kd  # the surface's coefficient of diffuse reflection  (0<= ka <= 1)
+		self.material = material 
 
 
 	def surface_normal(self, point = Vector(1, 1, 1), ray_origin=Vector(0, 0, 0), ray_dir=Vector(0, 0, 0)):
