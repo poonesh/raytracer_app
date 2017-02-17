@@ -68,6 +68,19 @@ class Vector():
 		self.z = self.z*cons
 		return self
 
+
+	def reflected_ray_dir(self, normal_vector):
+		"""this function calculates the reflected ray 
+		of a mirror surface primitive in a ray tracer 
+		scene."""
+
+		N = normal_vector.normalize()
+		N_dot_self = N.dot(self.normalize())
+		R_r = (N.constant_multiply(N_dot_self)).constant_multiply(2).sub(self.normalize())
+		ref_ray_dir = R_r.normalize()
+		return ref_ray_dir
+		
+
 	def __str__(self):
 		return '({}, {}, {})'.format(self.x, self.y, self.z)
 
