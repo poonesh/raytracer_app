@@ -173,21 +173,6 @@ class RayTracer():
 				color = self.scene_intersect(ray)
 				""" assign the color to the screen2D pixels """
 				self.screen2D.pixels[i,self.size[1] - j - 1] = color
-			"""measuring the percentage of the image has been filled"""
-			# if i == 0.25*self.size[0]:
-			# 	percent = i
-			# 	call_per(percent)
-			# elif i == 0.50*self.size[0]:
-			# 	percent = i 
-			# 	call_per(percent)
-			# elif i == 0.75*self.size[0]:
-			# 	percent = i 
-			# 	call_per(percent)
-			# elif i == (self.size[0]-1):
-			# 	percent = i 
-			# 	call_per(percent)
-
 		self.screen2D.image.save("/Users/Pooneh/projects/applications/ray_tracer_app_flask/static/ray_pic.png")
 
 		
-
