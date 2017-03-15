@@ -1,0 +1,65 @@
+
+.page-header
+{
+
+}
+
+.page-header h3
+{
+	color: #000000;
+}
+
+#main-content 
+{
+    margin: 0 auto;
+    background-color: #daa520;  
+}
+
+#image-col
+{
+	background-color: #B8860B;
+}
+
+.text-center
+{
+	display: block;
+	margin: 0 auto;
+}
+
+#property-col
+{
+	background-color: #D2691E;
+}
+
+#Point-Light-X
+{
+	width: 60px;
+}
+
+
+#Point-Light-Y
+{
+	width: 60px;
+}
+
+
+#Point-Light-Z
+{
+	width: 60px;
+}	
+
+
+#image-size-selector
+{
+	width: 100px;
+}
+
+
+.footer 
+{
+	background-color: #C0C0C0;
+	margin-top:20px;
+	padding-top:20px;
+
+}
+
