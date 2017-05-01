@@ -15,12 +15,9 @@
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
     <script type="text/javascript" 
      src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript"  src = "{{ url_for('static', filename='script_form.js')}}"></script>
-
-         
+    <script type="text/javascript"  src = "{{ url_for('static', filename='script_form.js')}}"></script> 
   </head>
 
-  <body>
   <!--  start of the header -->
 	<header>
 		<div class="container">
@@ -44,87 +41,128 @@
     </div>
     <!-- end of the container with more description about ray tracer -->
 
-  <!-- start of the container including cornell box image and the form -->
-  <div class="container" id="main-content">
-    <div class="row">
-      <!-- start of the column with ray tracer image -->
-      <div class="col-lg-6" id="image-col">
-        <div class="container">
-          <h3>Cornell Box</h3>
-          <div id="image" ></div>
+    <!-- start of the container including cornell box image and the form -->
+    <div class="container" id="main-content">
+      <div class="row">
+        <!-- start of the column with ray tracer image -->
+        <div class="col-lg-4" id="image-col">
+          <div class="container image">
+            <h3>Cornell Box</h3>
+            <div class= "img-responsive center-block" id="image" alt="Responsive Image"></div>
+          </div>
         </div>
-      </div>
       <!-- end of the column with ray tracer image -->
 
-      <!-- start of the column with properties (form-control)-->
-      <div class="col-lg-6" id="property-col">
+      <!-- start of the column with properties(form-control)-->
+      <div class="col-lg-8" id="property-col">
         <div class="container">
-          <form id="the-form">
+          <form class="form" id="the-form">
+          
           <div class="row">
-            <h3>Properties of Cornell Box</h3>
+            <h3>Properties</h3>
             <br>
           </div>
+          
+          <!-- division with image size selector -->
           <div class="row">
             <div class="form-group">
               <fieldset class="form-inline">
-                <label>Image Size</label>
+                <label class="control-label">Image Size:</label>
                 <select class="form-control" id="image-size-selector">
-                  <option>128×128</option>
-                  <option>256×256</option>
-                  <option>512×512</option>
-                  <option>1024×1024</option>
+                  <option value="128">128×128</option>
+                  <option value="256">256×256</option>
+                  <option value="512">512×512</option>
+                  <option value="1024">1024×1024</option>
                 </select>
               </fieldset>
             </div>
           </div>
+          <!-- end of division with image size selector -->
+
+        <!-- dynamic form (selecting primitives) -->
+        <div class="row" id="dynamic_form">
+          <div class="form-group form-horizontal">
+            <label class="control-label">Primitives</label>
+            <div class="form-inline">
+              <select class="input-small form-control" id="primitive-selector" name="PrimitiveChoose[]">   
+                <option value="sphere">sphere</option>
+                <option value="triangle">triangle</option>
+              </select>
+              <input type="number" class="input-small form-control" id="diameter" name="Diameter[]" step="any" placeholder="diameter(D)">
+
+              <input type="text" class="form-control" id="sphere-position" name="SpherePosition[]" placeholder="(x, y, z)">
+              <input type="text" class="A form-control" id="A-position" name="VerticeAPosition[]" placeholder="(x, y, z)">
+              <input type="text" class="B form-control" id="B-position" name="VerticeBPosition[]" placeholder="(x, y, z)">
+              <input type="text" class="C form-control" id="C-position" name="VerticeCPosition[]" placeholder="(x, y, z)">
+
+              
+              <select class="input-small form-control" id="material-selector" name="MaterialSelect[]">
+                  <option value=" " disabled="" selected="">material</option>
+                  <option value="normal">opaque</option>
+                  <option value="glass">glass</option>
+                  <option value="mirror">mirror</option>
+              </select>
+              <select class="input-small form-control" id="circle-color-selector" name="CircColorSelect[]">
+                  <option value=" " disabled="" selected="">color</option>
+                  <option value="red">red</option>
+                  <option value="blue">blue</option>
+                  <option value="green">green</option>
+                  <option value="yellow">yellow</option>
+              </select>
+              
+              <!-- primitives 'Add' button -->
+              <button type="button" class="btn btn-success btn-add" id="add_more"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              </button>
+              <!-- End of primitives 'Add' button -->
+              
+            </div>
+          </div>
+        </div>
+        <!-- end of dynamic form (selecting primitives) -->
+
+          <!-- point light position -->
           <div class="row">
             <div class="form-group">
-              <label>Point Light Position</label>
               <fieldset class="form-inline">
-                <label class="control-label">X:</label>
-                <input type="number" step="any"  id="Point-Light-X" class="input-mini form-control" >
-                <label class="control-label">Y:</label>
-                <input type="number" step="any"  id="Point-Light-Y" class="input-mini form-control" >
-                <label class="control-label">Z:</label>
-                <input type="number" step="any"  id="Point-Light-Z" class="input-mini form-control" >
+                <label class="control-label">Point Light Position:</label>
+                <input type="text" class="input-small form-control" id="light-position" placeholder="(x, y, z)" >
               </fieldset>
             </div>
           </div>
+          <!-- end of point light position -->
+
+          <!-- range (ambient-illumination) -->
           <div class="row">
             <div class="form-group">
               <fieldset class="form-inline">
-                <label>Ambient Illumination (between 0.2 and 0.8)</label>
-                <input type="range" id="Ambient-Illumination-Element" step="any" min="0.2" max="0.8" class="form-control input-mini">
+                <div id="slider">
+                  <label class="control-label">Ambient Illumination (between 0.0 and 0.8):</label>
+                  <input type="range" class="bar form-control" id="ambient-illumination" step="any" min="0.0" max="0.8">
+                </div>
               </fieldset>
             </div>
           </div>
+          <!-- end of range (ambient-illumination) -->
+
+          <!-- recalculate (submit button) -->
           <div class="row">
-            <button type="submit" id="Recalculate" class="btn btn-default">Recalculate</button>
+            <button type="submit" class="btn btn-default" id="Recalculate">Recalculate</button>
           </div>
+          <!-- end of recalculate (submit button)-->
+
           </form>
+        
         </div>
       </div>
       <!-- end of the column with properties (form-control)-->
     </div>
   </div>
   <!-- end of the container including cornell box image and the form -->
-  
-  <!-- start of the footer -->
-  <footer class="footer">
-    <div class="row">
-      <div class="container">
-          
-      </div>
-    </div>
-	</footer>
-  <!-- end of the footer -->
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  </body>
   <!-- end of the main content of the body -->
+  </body>  
 </html>
-
-
 
