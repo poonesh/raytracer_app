@@ -13,19 +13,20 @@ import sys
 
 
 class RayTracer():
-	def __init__(self, lightpos=Vector(0 ,0 , 0), camerapos=Vector(0, 0, 0), O=Vector(0, 0, 0), U=Vector(0, 0, 0), V=Vector(0, 0, 0)):
-		self.lightpos = PointLight(position=lightpos)
+	def __init__(self, screen2D=[256, 256], lights=[] , camerapos=Vector(0, 0, 0), O=Vector(0, 0, 0), U=Vector(0, 0, 0), V=Vector(0, 0, 0)):
+		self.lights = lights
 		self.camerapos = camerapos
 		self.viewportpos = Viewport(O=O, U=U, V=V)
 		self.list_of_primitives = []
-		self.screen2D = Screen2D(128, 128)
+		self.screen2D = Screen2D(screen2D[0], screen2D[1])
 		self.size = self.screen2D.image.size
 
 		# primitives 
-		sphere_1 = Sphere(position= Vector(4, 4, -6), radius= 1.0, color= Vector(255, 255, 224))  #gray
-		sphere_2 = Sphere(position= Vector(7, 2, -4), radius= 1.0, color= Vector(50, 205, 50))  #green
-		sphere_3 = Sphere(position= Vector(2, 2, -3), radius=1.5, color= Vector(255, 255, 255), material = "mirror")
-		sphere_4 = Sphere(position= Vector(8, 2, -2), radius=0.5, color=Vector(0, 0, 0), material = "mirror") 
+		sphere_1 = Sphere(position=Vector(4, 4, -6), radius=1.0, color=Vector(255, 255, 224))  #gray
+		sphere_2 = Sphere(position=Vector(7, 2, -4), radius=1.0, color=Vector(50, 205, 50))  #green
+		sphere_3 = Sphere(position=Vector(2, 2, -3), radius=1.5, color=Vector(255, 255, 255), material = "mirror")
+		sphere_4 = Sphere(position=Vector(8, 2, -2), radius=0.5, color=Vector(0, 0, 0), material = "mirror") 
+		sphere_5 = Sphere(position=Vector(3, 3, -3), radius=1.0, color=Vector(255, 255, 255), material = "glass")
 		triangle_1 = Triangle(b= Vector(7, 2, -7), a= Vector(6, 5, -7), c= Vector(5, 2, -7), color= Vector(205, 92, 92))
 		triangle_2 = Triangle(a= Vector(4, 1, -5), b= Vector(5, 4, -5), c= Vector(6, 1, -5), color= Vector(72, 61, 139))
 
@@ -51,6 +52,7 @@ class RayTracer():
 		self.list_of_primitives.append(sphere_2)
 		self.list_of_primitives.append(sphere_3)
 		self.list_of_primitives.append(sphere_4)
+		# self.list_of_primitives.append(sphere_5)
 		self.list_of_primitives.append(triangle_1)
 		self.list_of_primitives.append(triangle_2)
 
@@ -68,11 +70,11 @@ class RayTracer():
 
 
 		#calculate ambient illumination for the point_light
-		self.ambient = self.lightpos.ambient_illumination()
+		self.ambient = self.lights[0].ambient_illumination()
 
 
 	def set_light_pos(self, position=Vector(0, 0, 0)):
-		self.lightpos = PointLight(position=position)
+		self.lights = self.lights[0](position=position)
 		return self.lightpos
 
 
@@ -83,7 +85,7 @@ class RayTracer():
 
 	def is_in_shadow(self, intersect_point, obj):
 		#1. calculate ray from intersect point to light source
-		light_intersect_vector = self.lightpos.position.clone().sub(intersect_point)
+		light_intersect_vector = self.lights[0].position.clone().sub(intersect_point)
 		t_ray_light = light_intersect_vector.mag()
 		light_intersect_ray = Ray(origin = intersect_point.clone(), ray_dir= light_intersect_vector.normalize())
 		#2. determine if ray intersects any OTHER primitives
@@ -111,7 +113,7 @@ class RayTracer():
 
 		plane_normal_ray_vec_dot = ray.ray_dir.clone().dot(normal_vector) 
 
-		diffuse = self.lightpos.diffuse_illumination(Normal_vector=normal_vector.clone() , point=intersect_point) #calculate diffuse illumination for the point_light 
+		diffuse = self.lights[0].diffuse_illumination(Normal_vector=normal_vector.clone() , point=intersect_point) #calculate diffuse illumination for the point_light 
 		add_diffuse_ambient = diffuse.clone().add(self.ambient.clone()) #add diffuse and ambient illumination 
 		 
 		#rescaling the surface color between 0 and 1, multiplying with diffuse and ambient illumination """

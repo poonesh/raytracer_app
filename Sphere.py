@@ -83,7 +83,10 @@ class Sphere():
 
 		elif t1==t2:
 			return t1
-
+		elif t1 > 0 and t2 < 0:
+			return t1
+		elif t2 > 0 and t1 < 0:
+			return t2
 		else:
 			return False
 

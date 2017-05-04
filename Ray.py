@@ -1,5 +1,6 @@
 
 from Vector import Vector
+import math
 
 class Ray():
 	"""
@@ -18,7 +19,26 @@ class Ray():
 		point_on_the_ray_direction = self.origin.clone().add(scaled_ray_direction)
 		return point_on_the_ray_direction 
 
+	def refract(self, nFrom, nTo, intersect_point, surface_normal):
+		c_1 = surface_normal.normalize().clone().dot(self.ray_dir.normalize().clone())
+
+		n = nFrom / nTo
+
+		k = (1-(n**2)*(1-(c_1)**2))
 
 
+		if k < 0:
+			return "K is negative"
+
+		c_2 = math.sqrt(k)
 
 
+		part_1 = self.ray_dir.normalize().constant_multiply(n)
+		part_2 = surface_normal.normalize().clone().constant_multiply((n*c_1 - c_2))
+
+		ref_ray_dir = (part_1.clone().add(part_2.clone())).normalize()
+	 	ref_ray = Ray(origin=intersect_point, ray_dir=ref_ray_dir)
+
+		return ref_ray
+
+		
