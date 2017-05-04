@@ -22,7 +22,7 @@ function getHTMLString(formCount) {
 		        '<option value="mirror">mirror</option>',
 		        '</select> ',
 
-                '<select class="input-small form-control" id="circle-color-selector'+ formCount +'" name="CircColorSelect[]">',
+                '<select class="input-small form-control" id="color-selector'+ formCount +'" name="ColorSelect[]">',
                   '<option value=" " disabled selected>color</option>',
                   '<option value="red">red</option>',
                   '<option value="blue">blue</option>',
@@ -37,14 +37,69 @@ function getHTMLString(formCount) {
 
 }
 
-	var formCount = 0;  // global variable formCount
+/* This function returns an object with all the properties of Triangle primitives 
+chosen by the user. The returned object will be appended to an array called dynamicFoem 
+in the following. This array will be the value for key "dynamicForm" in the final object called 
+finalDic */
+
+function createTriangleParameter(i, dict){
+	var new_dict = {}
+	var triangle_dict = {}
+	for (var key in dict){
+		if (key[key.length-1] == i){
+			if (key === "#A-position"+i){
+				new_dict["vertexA"] = dict[key];	
+			} else if (key === "#B-position"+i){
+				new_dict["vertexB"] = dict[key];
+			} else if (key === "#C-position"+i){
+				new_dict["vertexC"] = dict[key];
+			} else if (key === "#color-selector"+i){
+				new_dict["color"] = dict[key];
+			} else if (key === "#material-selector"+i){
+				new_dict["material"] = dict[key];
+			}
+			
+		}
+	}
+	triangle_dict["triangle"] = new_dict;
+	return triangle_dict;
+}
+
+/* This function returns an object with all the properties of Sphere primitives 
+chosen by the user. The returned object will be appended to an array called dynamicFoem 
+in the following. This array will be the value for key "dynamicForm" in the final object called 
+finalDic */
+
+function createSphereParameter(i, dict){
+	var new_dict = {}
+	var sphere_dict = {}
+	for (var key in dict){
+		if (key[key.length-1] == i){
+			if (key === "#diameter"+i){
+				new_dict["diameter"] = dict[key];	
+			} else if (key === "#sphere-position"+i){
+				new_dict["sphere-position"] = dict[key];
+			} else if (key === "#color-selector"+i){
+				new_dict["color"] = dict[key];
+			} else if (key === "#material-selector"+i){
+				new_dict["material"] = dict[key];
+			}	
+		 
+		}
+	}
+	sphere_dict["sphere"] = new_dict;
+	return sphere_dict;
+}
+
+
+	var formCount = 1;  // global variable formCount
 
 	/* This jQuery click event handler removes the dynamically added forms for primitives in the scene of Ray Tracer. 
 	Attach a click event to the <document> element where Jquery attribute start with selector is used, 
 	"[id^=remove_more]" (specified attribute begining exactly with a given string [name^='value']). This selector is useful for 
 	identifying elements produced by server-side frameworks where HTML produced with systematic element IDs. */ 
 
-	$(document).on("click", "[id^=remove_more]", function(e){ 
+	$(document).on('click', '[id^=remove_more]', function(e){ 
 	    e.preventDefault(); // stops the default behaviour of an HTML element
 	
 	// 'this' is the DOM element which triggers the event. This line (closest()) returns the first form-inline 
@@ -60,11 +115,14 @@ function getHTMLString(formCount) {
 	$(document).on('change', '[id^=primitive-selector]', function() {
 	// 'this' here is DOM (HTML) element  and this.id.replace('primitive-selector', '') basically 
 	// returns the numeric part of id (which is produced here by server side)
-	    var formCount = this.id.replace('primitive-selector', ''); 
+	    // console.log('here I am!')
+	    // console.log(this.id)
+	    var formCount = this.id.replace('primitive-selector', '');
+	    console.log(formCount)
 	    var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount +
 	            ', #C-position'+ formCount;
 	    var SselectorString = '#diameter'+ formCount + ', #sphere-position'+ formCount +
-	            ', #material-selector'+ formCount + ', #circle-color-selector'+ formCount
+	            ', #material-selector'+ formCount + ', #color-selector'+ formCount
 	    var IsS = $(this).val() === "sphere";
 	    $(SselectorString).toggle(IsS);
 	    $(TselectorString).toggle(!IsS);
@@ -75,14 +133,15 @@ function getHTMLString(formCount) {
 	$(document).ready(function() {
 		console.log("here")
 	    $('#add_more').on('click', function(e) {
-	    	e.preventDefault();  
-	        if (formCount < 4) {
+	    	e.preventDefault(); 
+	    	console.log("addHere") 
+	        if (formCount < 5) {
 	            var html = getHTMLString(formCount);
-	         	$('#dynamic_form  .form-group').append(html);
+	         	$('#dynamic_form .form-group').append(html);
 	         	var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount +
 	            ', #C-position'+ formCount;
 			    var SselectorString = '#diameter'+ formCount + ', #sphere-position'+ formCount +
-			            ', #material-selector'+ formCount + ', #circle-color-selector'+ formCount
+			            ', #material-selector'+ formCount + ', #color-selector'+ formCount
 			    
 				$(SselectorString).toggle(true);
 			    $(TselectorString).toggle(false);
@@ -92,25 +151,63 @@ function getHTMLString(formCount) {
 	        formCount++;
 	    });
 
-	    /* This jQuery event handler using jQuery.getJSON() in order to Load JSON-encoded data from the server using a GET HTTP request. */
+	    /* This jQuery event handler creates the final object (finalDic) which will be sent to Flask.*/ 
+	    $('#the-form').on('submit', function(e) {
+	    	e.preventDefault();
+	     	var dict = {};
+	 	/* querySelectorAll returns all the children of ('div.form-inline > *'). Then creates an object with the ids and values
+	 	of all the children */  
+			var children = document.querySelectorAll('div.form-inline > *');
+			for (var i=0; i<children.length; i++){
+				var id = children[i].id;
+				id = "#" + id;
+				var value = $(id).val();
+				dict[id] = value;
+			}
 
-	    $('#the-form').on('submit', function() {
-	    	
-	    	/* jQuery.getJSON(URL, [data], [callback])
-	    	url: A string containing the URL to which the request sent
-	    	data: optional parameter which represents key/value pairs that will be sent to the server
-	    	callback: optional parameter represents a function to be executed whenever the data is loaded successfully */
+		/* appending the sphere and triangle properties to dynamicForm */	
+			var dynamicForm = []
+			for (var i=0; i<5; i++){
+				type = dict['#primitive-selector'+ i];
+				if (type === "sphere") {
+					var final_dict = createSphereParameter(i, dict);
+					dynamicForm[i] = final_dict;	 
+				} else if (type === "triangle") {
+					var final_dict = createTriangleParameter(i, dict);
+					dynamicForm[i] = final_dict;
+				}
+			}
+		/* final object to be sent to flask using Ajax */	
+			var finalDic = {}
+			finalDic["imageSize"] = $('#image-size-selector').val();
+			finalDic["dynamicForm"] = dynamicForm;
+			finalDic["lightPosition"] = $('#light-position').val();
+			finalDic["ambIllumination"] = $('#ambient-illumination').val();
 			
-	  		$.getJSON('/result', {
-	    		light_position: $('[id="light-position"]').val(),
-	    		image_size: $('[id="image-size-selector"]').val(),
-	    		ambient_illumination: $('[id="ambient-illumination"]').val()
-	    				
-	   		}, function(data) {
-	   	 			$('#image').html('<img src="data:image/png;base64,' + data.data + '" />');
-	   			});
-	   			return false;
+			$.ajax({
+				type: 'POST',
+				url: 'http://localhost:4000/result',
+				data: JSON.stringify(finalDic),
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				success: function(response){
+					console.log(response);
+
+				},
+				error: function(error){
+					console.log(error);
+
+				} 
+
+			});
+			
+	  		// $.getJSON('/result',function(data) {
+	   	//  		$('#image').html('<img src="data:image/png;base64,' + data.data + '" />'); //data.data
+	   			
+	   	// 		});
+	   	//  		return false;
+
 	  	});
 	});
 
-
+ 
