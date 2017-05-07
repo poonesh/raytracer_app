@@ -113,6 +113,16 @@ input .SpherePosition
 	display:none;
 }
 
+#triangle-color0
+{
+  display:none;
+}
+
+#triangle-material-selector0
+{
+  display:none;
+}
+
 /* type range properties (range input) */
 input[type=range] {
   -webkit-appearance: none;
