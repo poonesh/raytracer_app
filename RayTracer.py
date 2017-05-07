@@ -13,22 +13,23 @@ import sys
 
 
 class RayTracer():
-	def __init__(self, screen2D=[256, 256], lights=[] , camerapos=Vector(0, 0, 0), O=Vector(0, 0, 0), U=Vector(0, 0, 0), V=Vector(0, 0, 0)):
+	def __init__(self, screen2D=[256, 256], primitives=[] , lights=[] , camerapos=Vector(0, 0, 0), O=Vector(0, 0, 0), U=Vector(0, 0, 0), V=Vector(0, 0, 0)):
 		self.lights = lights
 		self.camerapos = camerapos
 		self.viewportpos = Viewport(O=O, U=U, V=V)
 		self.list_of_primitives = []
+		self.primitives = primitives 
 		self.screen2D = Screen2D(screen2D[0], screen2D[1])
 		self.size = self.screen2D.image.size
 
-		# primitives 
-		sphere_1 = Sphere(position=Vector(4, 4, -6), radius=1.0, color=Vector(255, 255, 224))  #gray
-		sphere_2 = Sphere(position=Vector(7, 2, -4), radius=1.0, color=Vector(50, 205, 50))  #green
-		sphere_3 = Sphere(position=Vector(2, 2, -3), radius=1.5, color=Vector(255, 255, 255), material = "mirror")
-		sphere_4 = Sphere(position=Vector(8, 2, -2), radius=0.5, color=Vector(0, 0, 0), material = "mirror") 
-		sphere_5 = Sphere(position=Vector(3, 3, -3), radius=1.0, color=Vector(255, 255, 255), material = "glass")
-		triangle_1 = Triangle(b= Vector(7, 2, -7), a= Vector(6, 5, -7), c= Vector(5, 2, -7), color= Vector(205, 92, 92))
-		triangle_2 = Triangle(a= Vector(4, 1, -5), b= Vector(5, 4, -5), c= Vector(6, 1, -5), color= Vector(72, 61, 139))
+		# primitives
+		# sphere_1 = Sphere(position=Vector(4, 4, -6), radius=1.0, color=Vector(255, 255, 224))  #gray
+		# sphere_2 = Sphere(position=Vector(7, 2, -4), radius=1.0, color=Vector(50, 205, 50))  #green
+		# sphere_3 = Sphere(position=Vector(2, 2, -3), radius=1.5, color=Vector(255, 255, 255), material = "mirror")
+		# sphere_4 = Sphere(position=Vector(8, 2, -2), radius=0.5, color=Vector(0, 0, 0), material = "mirror") 
+		# sphere_5 = Sphere(position=Vector(3, 3, -3), radius=1.0, color=Vector(255, 255, 255), material = "glass")
+		# triangle_1 = Triangle(b= Vector(7, 2, -7), a= Vector(6, 5, -7), c= Vector(5, 2, -7), color= Vector(205, 92, 92))
+		# triangle_2 = Triangle(a= Vector(4, 1, -5), b= Vector(5, 4, -5), c= Vector(6, 1, -5), color= Vector(72, 61, 139))
 
 		# cornell box components
 		triangle_back_1 = Triangle(a= Vector(1, 1, -8), b= Vector(9, 1, -8), c= Vector(1, 9, -8), color= Vector(255, 215, 0))
@@ -48,13 +49,18 @@ class RayTracer():
 
 
 		# appending the objects in the scene to a list (list_of_primitives) 
-		self.list_of_primitives.append(sphere_1)
-		self.list_of_primitives.append(sphere_2)
-		self.list_of_primitives.append(sphere_3)
-		self.list_of_primitives.append(sphere_4)
-		# self.list_of_primitives.append(sphere_5)
-		self.list_of_primitives.append(triangle_1)
-		self.list_of_primitives.append(triangle_2)
+		# self.list_of_primitives.append(sphere_1)
+		# self.list_of_primitives.append(sphere_2)
+		# self.list_of_primitives.append(sphere_3)
+		# self.list_of_primitives.append(sphere_4)
+		# # self.list_of_primitives.append(sphere_5)
+		# self.list_of_primitives.append(triangle_1)
+		# self.list_of_primitives.append(triangle_2)
+
+		for prim in self.primitives:
+			print "prim", prim
+			self.list_of_primitives.append(prim)
+
 
 		# appending cornell box componenet to the list_of_primitives  
 		self.list_of_primitives.append(triangle_back_1)
@@ -84,6 +90,8 @@ class RayTracer():
 
 
 	def is_in_shadow(self, intersect_point, obj):
+		"""
+		"""
 		#1. calculate ray from intersect point to light source
 		light_intersect_vector = self.lights[0].position.clone().sub(intersect_point)
 		t_ray_light = light_intersect_vector.mag()
@@ -91,7 +99,7 @@ class RayTracer():
 		#2. determine if ray intersects any OTHER primitives
 		is_intersected = False
 		for test_obj in self.list_of_primitives:
-			if obj != test_obj:
+			if obj != test_obj and test_obj.material != "glass":
 				t = test_obj.get_intersect(light_intersect_ray.origin.clone(), light_intersect_ray.ray_dir.clone())
 				if t and t < t_ray_light:
 					is_intersected = True
@@ -130,26 +138,46 @@ class RayTracer():
 		return final_color
 
 
-	def scene_intersect(self, ray):
+	def scene_intersect(self, ray, n_current):
 		intersect_scale_dic = {}
-		num_of_bounces = 0
+		num_of_bounces_glass = 0
+		num_of_bounces_mirror = 0
 		for obj in self.list_of_primitives:
-			t = obj.get_intersect(ray.origin.clone(), ray.ray_dir.clone()) 
+			t = obj.get_intersect(ray.origin.clone(), ray.ray_dir.normalize().clone()) 
 			if t:
-				intersect_scale_dic[obj] = t
+				intersect_scale_dic[obj] = t	
 		if len(intersect_scale_dic) != 0:
 			t_min = min(intersect_scale_dic.itervalues())
 			intersected_obj = (min(intersect_scale_dic, key=intersect_scale_dic.get))
 			surface_color = intersected_obj.color
-			intersect_point = ray.origin.clone().add(ray.ray_dir.clone().constant_multiply(t_min))
-			normal_vector = intersected_obj.surface_normal(point=intersect_point.clone(), ray_origin=self.camerapos.clone(), ray_dir=ray.ray_dir.clone())
+			intersect_point = ray.origin.clone().add(ray.ray_dir.normalize().clone().constant_multiply(t_min))
+			normal_vector = intersected_obj.surface_normal(point=intersect_point.clone(), ray_origin=self.camerapos.clone(), ray_dir=ray.ray_dir.normalize().clone())	
+			
+			if intersected_obj.material == "glass" and num_of_bounces_glass <= 200:
+				num_of_bounces_glass += 1
+				if n_current == "air":
+					nFrom = 1
+					nTo = 1.5
+				else:
+					nFrom = 1.5
+					nTo = 1
+				ray = ray.refract(nFrom, nTo, intersect_point, normal_vector)
+				ray.origin = ray.origin.clone().add(ray.ray_dir.normalize().clone().constant_multiply(0.001))
+				
+				if ray.reflect_called == False:
+					if n_current == "air":
+						n_current = "glass"
+					else:
+						n_current = "air"
 
-			if intersected_obj.material == "mirror" and num_of_bounces <= 100:
-				num_of_bounces += 1
-				def_ray_dir = ray.ray_dir.constant_multiply(-1).clone().reflected_ray_dir(normal_vector.clone())
-				intersect_point = intersect_point.clone().add(def_ray_dir.normalize().clone().constant_multiply(0.001))
-				def_ray = Ray(origin=intersect_point.clone(), ray_dir=def_ray_dir.clone())
-				return self.scene_intersect(def_ray)
+				return self.scene_intersect(ray, n_current)
+			
+		
+			if intersected_obj.material == "mirror" and num_of_bounces_mirror <= 200:
+				num_of_bounces_mirror += 1
+				ray = ray.reflect(intersect_point, normal_vector)
+				ray.origin = ray.origin.clone().add(ray.ray_dir.normalize().clone().constant_multiply(0.001))
+				return self.scene_intersect(ray, "air")
 
 			else:
 				# calling is_in_shadow function to check if the intersect point is in shadow or not
@@ -172,9 +200,13 @@ class RayTracer():
 				view_port_pixel = self.viewportpos.percentage_to_point(percentage_pos[0], percentage_pos[1]) #converting pixel position percentage in the screen2D to the correlate pixel position in the viewport 
 				ray_dir = view_port_pixel.sub(self.camerapos.clone())
 				ray = Ray(self.camerapos.clone(), ray_dir.clone()) #defining a ray	
-				color = self.scene_intersect(ray)
+				color = self.scene_intersect(ray, "air")
 				""" assign the color to the screen2D pixels """
 				self.screen2D.pixels[i,self.size[1] - j - 1] = color
 		self.screen2D.image.save("/Users/Pooneh/projects/applications/ray_tracer_app_flask/static/ray_pic.png")
+
+
+
+		
 
 		

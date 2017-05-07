@@ -1,5 +1,4 @@
 
-
 from Vector import Vector
 from Ray import Ray
 import sys
@@ -7,7 +6,7 @@ import sys
 
 class Triangle():
 
-	def __init__(self, a= Vector(1.0, 0.0, 0.0), b= Vector(0.0, 0.0, 1.0), c= Vector(0.0, 1.0, 0.0), color=Vector(255, 0, 0), ka = 0, kd = 0, material="normal"):
+	def __init__(self, a= Vector(1.0, 0.0, 0.0), b= Vector(0.0, 0.0, 1.0), c= Vector(0.0, 1.0, 0.0), color=Vector(0.0, 0.0, 0.0), ka = 0, kd = 0, material="normal"):
 		self.a = a
 		self.b = b
 		self.c = c

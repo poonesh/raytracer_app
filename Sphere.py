@@ -12,26 +12,22 @@ def solve_quadratic(a, b, c):
 
 	return x1, x2
 
-
 class Sphere():
 
-	def __init__(self, position= Vector(0, 0, 0), radius = 1.0, color=Vector(0, 0, 255), ka = 0, kd = 0, material="normal"):
+	def __init__(self, position=Vector(0, 0, 0), radius = 1.0, color=Vector(0, 0, 0), ka = 0, kd = 0, material = "normal"):
 		self.position = position
 		self.radius = radius
 		self.color = color
 		self.ka = ka  # the surface's coefficient of ambient reflection  (0<= ka <= 1)
 		self.kd = kd  # the surface's coefficient of diffuse reflection  (0<= ka <= 1)
-		self.material = material 
+		self.material = material
 
-
-	def surface_normal(self, point = Vector(1, 1, 1), ray_origin=Vector(0, 0, 0), ray_dir=Vector(0, 0, 0)):
+	def surface_normal(self, point=Vector(1, 1, 1), ray_origin=Vector(0, 0, 0), ray_dir=Vector(0, 0, 0)):
 
 		center_point_vector = point.clone().sub(self.position.clone())
 		return center_point_vector.clone().normalize()
 
-
-	
-	def get_intersect(self, ray_origin= Vector(0, 0, 0), ray_dir = Vector(1, 1, 1)):
+	def get_intersect(self, ray_origin=Vector(0, 0, 0), ray_dir=Vector(1, 1, 1)):
 		
 		"""
 		this method returns the point where a Ray and a sphere intersects.
@@ -69,12 +65,12 @@ class Sphere():
 		mag_vector_O_C = vector_O_C.mag()
 
 		c = (mag_vector_O_C)**2 - (self.radius)**2
+
 		
 		if solve_quadratic(a, b, c) is None:
 			return False
 
 		t1, t2 = solve_quadratic(a, b, c)
-
 
 		if t1>0 and t2>0:
 			if t1<t2:
@@ -89,7 +85,5 @@ class Sphere():
 			return t2
 		else:
 			return False
-
-
 
 
