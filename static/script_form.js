@@ -9,26 +9,18 @@ function getHTMLString(formCount) {
                   '<option value="sphere">sphere</option>',
                   '<option value="triangle">triangle</option>',
                 '</select> ',
-                '<input type="number" class="input-small form-control" id="diameter'+ formCount +'"  name="Diameter[]" step="any" placeholder="diameter(D)"> ',
-                '<input type="text" class="form-control"  id="sphere-position'+ formCount +'" name="SpherePosition[]"  placeholder="(x, y, z)"> ',
-                '<input type="text" class="A form-control" id="A-position'+ formCount +'" name="VerticeAPosition[]" placeholder="(x, y, z)"> ',
-              	'<input type="text" class="B form-control" id="B-position'+ formCount +'" name="VerticeBPosition[]" placeholder="(x, y, z)"> ',
-              	'<input type="text" class="C form-control" id="C-position'+ formCount +'" name="VerticeCPosition[]" placeholder="(x, y, z)"> ',
-  
-              	'<select class="input-small form-control" id="material-selector'+ formCount +'" name="MaterialSelect[]">',
-		        '<option value=" " disabled="" selected="">material</option>',
-		        '<option value="normal">opaque</option>',
-		        '<option value="glass">glass</option>',
-		        '<option value="mirror">mirror</option>',
-		        '</select> ',
-
-                '<select class="input-small form-control" id="color-selector'+ formCount +'" name="ColorSelect[]">',
-                  '<option value=" " disabled selected>color</option>',
-                  '<option value="red">red</option>',
-                  '<option value="blue">blue</option>',
-                  '<option value="green">green</option>',
-                  '<option value="yellow">yellow</option>',    
-                '</select> ', 
+                '<input type="text" class="input-small form-control" id="radius'+ formCount +'"  name="Radius[]" step="any" placeholder="radius(r)" size="7"> ',
+                '<input type="text" class="form-control"  id="sphere-position'+ formCount +'" name="SpherePosition[]"  placeholder="position(x, y, z)" size="15"> ',
+                '<input type="text" class="A form-control" id="A-position'+ formCount +'" name="VerticeAPosition[]" placeholder="vertex(x, y, z)" size="15"> ',
+              	'<input type="text" class="B form-control" id="B-position'+ formCount +'" name="VerticeBPosition[]" placeholder="vertex(x, y, z)" size="15"> ',
+              	'<input type="text" class="C form-control" id="C-position'+ formCount +'" name="VerticeCPosition[]" placeholder="vertex(x, y, z)" size="15"> ',
+                '<input type="text" class="Sphere form-control" id="color'+ formCount +'" name="ColorSelect[]" placeholder="color(255, 255, 255)" size="20"> ',
+		        '<select class="input-small form-control" id="material-selector'+ formCount +'" name="MaterialSelect[]"> ',
+                '<option value=" " disabled="" selected="">material</option>',
+                '<option value="normal">opaque</option>',
+                '<option value="glass">glass</option>',
+                '<option value="mirror">mirror</option>',
+              	'</select> ',
                 '<button type="button" class="btn btn-success btn-add" id="remove_more'+ formCount +'"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>',
                 '</button>',  
             '</div>',
@@ -53,12 +45,11 @@ function createTriangleParameter(i, dict){
 				new_dict["vertexB"] = dict[key];
 			} else if (key === "#C-position"+i){
 				new_dict["vertexC"] = dict[key];
-			} else if (key === "#color-selector"+i){
+			} else if (key === "#color"+i){
 				new_dict["color"] = dict[key];
 			} else if (key === "#material-selector"+i){
 				new_dict["material"] = dict[key];
-			}
-			
+			}			
 		}
 	}
 	triangle_dict["triangle"] = new_dict;
@@ -75,16 +66,15 @@ function createSphereParameter(i, dict){
 	var sphere_dict = {}
 	for (var key in dict){
 		if (key[key.length-1] == i){
-			if (key === "#diameter"+i){
-				new_dict["diameter"] = dict[key];	
+			if (key === "#radius"+i){
+				new_dict["radius"] = dict[key];	
 			} else if (key === "#sphere-position"+i){
 				new_dict["sphere-position"] = dict[key];
-			} else if (key === "#color-selector"+i){
+			} else if (key === "#color"+i){
 				new_dict["color"] = dict[key];
 			} else if (key === "#material-selector"+i){
 				new_dict["material"] = dict[key];
-			}	
-		 
+			}			 
 		}
 	}
 	sphere_dict["sphere"] = new_dict;
@@ -119,13 +109,15 @@ function createSphereParameter(i, dict){
 	    // console.log(this.id)
 	    var formCount = this.id.replace('primitive-selector', '');
 	    console.log(formCount)
-	    var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount +
-	            ', #C-position'+ formCount;
-	    var SselectorString = '#diameter'+ formCount + ', #sphere-position'+ formCount +
-	            ', #material-selector'+ formCount + ', #color-selector'+ formCount
+	    var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount + ', #C-position'+ formCount; 
+	    var SselectorString = '#radius'+ formCount + ', #sphere-position'+ formCount;
+
+	    console.log(TselectorString);
+	    console.log(SselectorString);
+
 	    var IsS = $(this).val() === "sphere";
-	    $(SselectorString).toggle(IsS);
 	    $(TselectorString).toggle(!IsS);
+	    $(SselectorString).toggle(IsS);
 	});
 
 	/* When the Document Object Model ($(document)) is ready for JavaScript code to execute, a jQuery click event handler is 
@@ -138,13 +130,12 @@ function createSphereParameter(i, dict){
 	        if (formCount < 5) {
 	            var html = getHTMLString(formCount);
 	         	$('#dynamic_form .form-group').append(html);
-	         	var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount +
-	            ', #C-position'+ formCount;
-			    var SselectorString = '#diameter'+ formCount + ', #sphere-position'+ formCount +
-			            ', #material-selector'+ formCount + ', #color-selector'+ formCount
+
+	         	var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount + ', #C-position'+ formCount; 
+	    		var SselectorString = '#radius'+ formCount + ', #sphere-position'+ formCount;
 			    
-				$(SselectorString).toggle(true);
-			    $(TselectorString).toggle(false);
+				$(TselectorString).toggle(false);
+			    $(SselectorString).toggle(true);
 	        } else {
 	            return;
 	        }
@@ -183,15 +174,16 @@ function createSphereParameter(i, dict){
 			finalDic["dynamicForm"] = dynamicForm;
 			finalDic["lightPosition"] = $('#light-position').val();
 			finalDic["ambIllumination"] = $('#ambient-illumination').val();
-			
+
 			$.ajax({
 				type: 'POST',
-				url: 'http://localhost:4000/result',
+				url: '/result',
 				data: JSON.stringify(finalDic),
 				dataType: 'json',
 				contentType: 'application/json; charset=utf-8',
-				success: function(response){
-					console.log(response);
+				success: function(data){
+					console.log("passed the data")
+					$('#image').html('<img src="data:image/png;base64,' + data.data + '" />');
 
 				},
 				error: function(error){
@@ -200,12 +192,7 @@ function createSphereParameter(i, dict){
 				} 
 
 			});
-			
-	  		// $.getJSON('/result',function(data) {
-	   	//  		$('#image').html('<img src="data:image/png;base64,' + data.data + '" />'); //data.data
-	   			
-	   	// 		});
-	   	//  		return false;
+			return false;
 
 	  	});
 	});
