@@ -88,26 +88,17 @@
                 <option value="sphere">sphere</option>
                 <option value="triangle">triangle</option>
               </select>
-              <input type="number" class="input-small form-control" id="diameter0" name="Diameter[]" step="any" placeholder="diameter(D)">
-
-              <input type="text" class="form-control" id="sphere-position0" name="SpherePosition[]" placeholder="(x, y, z)" >
-              <input type="text" class="A form-control" id="A-position0" name="VerticeAPosition[]" placeholder="(x, y, z)" >
-              <input type="text" class="B form-control" id="B-position0" name="VerticeBPosition[]" placeholder="(x, y, z)" >
-              <input type="text" class="C form-control" id="C-position0" name="VerticeCPosition[]" placeholder="(x, y, z)">
-
-              
+              <input type="text" class="input-small form-control" id="radius0" name="Radius[]" step="any" placeholder="radius(r)" size="7">
+              <input type="text" class="form-control" id="sphere-position0" name="SpherePosition[]" placeholder="position(x, y, z)" size="15">
+              <input type="text" class="A form-control" id="A-position0" name="VerticeAPosition[]" placeholder="vertex(x, y, z)" size="15">
+              <input type="text" class="B form-control" id="B-position0" name="VerticeBPosition[]" placeholder="vertex(x, y, z)" size="15">
+              <input type="text" class="C form-control" id="C-position0" name="VerticeCPosition[]" placeholder="vertex(x, y, z)" size="15">
+              <input type="text" class="Sphere form-control" id="color0" name="ColorSelect[]" placeholder="color(255, 255, 255)" size="17">
               <select class="input-small form-control" id="material-selector0" name="MaterialSelect[]">
-                  <option value=" " disabled="" selected="">material</option>
-                  <option value="normal">opaque</option>
-                  <option value="glass">glass</option>
-                  <option value="mirror">mirror</option>
-              </select>
-              <select class="input-small form-control" id="color-selector0" name="ColorSelect[]">
-                  <option value=" " disabled="" selected="">color</option>
-                  <option value="red">red</option>
-                  <option value="blue">blue</option>
-                  <option value="green">green</option>
-                  <option value="yellow">yellow</option>
+                <option value=" " disabled="" selected="">material</option>
+                <option value="normal">opaque</option>
+                <option value="glass">glass</option>
+                <option value="mirror">mirror</option>
               </select>
               
               <!-- primitives 'Add' button -->
@@ -125,7 +116,7 @@
             <div class="form-group">
               <fieldset class="form-inline">
                 <label class="control-label">Point Light Position:</label>
-                <input type="text" class="input-small form-control" id="light-position" placeholder="(x, y, z)" >
+                <input type="text" class="input-small form-control" id="light-position" placeholder="(x, y, z)" size="15">
               </fieldset>
             </div>
           </div>
