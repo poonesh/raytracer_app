@@ -1,14 +1,22 @@
 
+import gevent.monkey, gevent.socket
+import socket
+gevent.monkey.patch_all()
+if socket.socket is gevent.socket.socket:
+    print "gevent monkey patch has occurred"
 from Vector import Vector
 from Sphere import Sphere
 from Triangle import Triangle 
 from PointLight import PointLight
 from Screen2D import Screen2D
 from RayTracer import RayTracer
-from flask import Flask, render_template, request, jsonify, Response, send_file, json
+from flask import Flask, render_template, request, json, jsonify
+from flask_socketio import SocketIO, emit, send, join_room, leave_room, close_room, rooms, disconnect
 from flask_celery import make_celery
+from celery import Celery
+import urllib2 
 import re 
-import base64, time
+import base64, time, cStringIO
 
 
 #helper function to use regex in order to read tuple (vector) elements which is given as a string 
@@ -31,16 +39,10 @@ def readDynamicForm(dynamicFormData):
 				sphere_position = item[key]['sphere-position']
 				pos_x, pos_y, pos_z = vectorElem(sphere_position)
 				radius = float(item[key]['radius'])
-				print(str(item[key]['color']))
 				color = str(item[key]['color'])
-				print "color", color
 				R, G, B = vectorElem(color)
-				print "R", R, G, B
-
 				material = str(item[key]['material'])
-				print material
-
-				sphere = Sphere(position=Vector(pos_x, pos_y, pos_z), radius=radius, ka=0, kd=0, material=material) #color=Vector(R, G, B)
+				sphere = Sphere(position=Vector(pos_x, pos_y, pos_z), color=Vector(R, G, B), radius=radius, ka=0, kd=0, material=material) 
 				primitiveObjs.append(sphere)
 
 			elif key == "triangle":
@@ -60,75 +62,56 @@ def readDynamicForm(dynamicFormData):
 
 # create a Flask instance and initialize the flask application
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
 
-# app.config.update(
-# CELERY_BROKER_URL = 'amqp://localhost//',
-# CELERY_RESULT_BACKEND='amqp://localhost//'
-# )
+app.config.update(
+CELERY_BROKER_URL = 'amqp://localhost//',
+CELERY_RESULT_BACKEND='amqp://localhost//'
+)
 
-# celery = make_celery(app)
+# socketio = SocketIO(app, engineio_logger=True, ping_timeout=120, message_queue='amqp://')
+socketio = SocketIO(app, engineio_logger=True, ping_timeout=120, message_queue='amqp://')
+celery = make_celery(app)
 
 
 @app.route('/')
 def my_form():
     return render_template("form.html")
-
-
+    
 
 @app.route('/result', methods=['POST'])
 def result():
-	
-	# light_position = request.args.get('light_position',"(0, 0, 0)", type=str)  
-	# image_size = request.args.get('image_size', 128,  type=int) 
-	# ambient_illumination = request.args.get('ambient_illumination', 0.5, type=float) 
-	# primitive_selector = request.args.get('primitive_selector', "sphere" , type=str)
-	# primitive_selector0 = request.args.get('primitive_selector0', "sphere" , type=str)
-
-	
 	light_position = request.json["lightPosition"]
 	image_size = int(request.json["imageSize"])
 	ambient_illumination = float(request.json["ambIllumination"])
-
 	dynamicFormData = request.json["dynamicForm"]
-	print "dynamicFormData", dynamicFormData
-	primitiveObjs = readDynamicForm(dynamicFormData)
-	# print "objects", primitiveObjs
-	# print type(primitiveObjs)
-	# print len(primitiveObjs)
-
+	final_result.delay(light_position, image_size, ambient_illumination, dynamicFormData)
+	return jsonify({"status": 200})
 	
+
+
+@celery.task(name='app.result')
+def final_result(light_position, image_size, ambient_illumination, dynamicFormData):
 	x, y, z = vectorElem(light_position)
-
+	primitiveObjs = readDynamicForm(dynamicFormData)
 	pointlight = PointLight(position=Vector(x, y, z), color=Vector(255, 255, 255), Ka=ambient_illumination) 
-	raytracer = RayTracer(screen2D=[image_size, image_size], primitives=primitiveObjs, lights=[pointlight], camerapos=Vector(7.5, 5, 10), O=Vector(0, 0, 0), U=Vector(10, 0, 0), V=Vector(0, 10, 0)) 
-	raytracer.render_image()
-
-	# the image is encoded to base64 which returns a string (encoded_string)
-	encoded_string = base64.b64encode(open("/Users/Pooneh/projects/applications/ray_tracer_app_flask/static/ray_pic.png", "rb").read())
-	return jsonify(data=encoded_string)
-	# with open ('result.json', 'w') as f:
-	# 	json.dump({'image': encoded_string}, f) # write the string in a file 'result.json'
-
-
-# @celery.task(name='app.result')
-# def final_result(light_position, image_size, ambient_illumination, primitive_selector):
-# 	light_position_coor = re.findall("[-+]?\d*\.\d+|[-+]?\d+", light_position)
-# 	x = float(light_position_coor[0])
-# 	y = float(light_position_coor[1])
-# 	z = float(light_position_coor[2])
-
-# 	pointlight = PointLight(position=Vector(x, y, z), color=Vector(255, 255, 255), Ka=ambient_illumination) 
-# 	raytracer = RayTracer(screen2D=[image_size, image_size], lights=[pointlight], camerapos=Vector(7.5, 5, 10), O=Vector(0, 0, 0), U=Vector(10, 0, 0), V=Vector(0, 10, 0)) 
-# 	raytracer.render_image()
-
-# 	# the image is encoded to base64 which returns a string (encoded_string)
-# 	encoded_string = base64.b64encode(open("/Users/Pooneh/projects/applications/ray_tracer_app_flask/static/ray_pic.png", "rb").read())
-# 	with open ('result.json', 'w') as f:
-# 		json.dump({'image': encoded_string}, f) # write the string in a file 'result.json'
+	raytracer = RayTracer(screen2D=[image_size, image_size], primitives=primitiveObjs, lights=[pointlight], camerapos=Vector(7.5, 5, 10), O=Vector(0, 0, 0), U=Vector(10, 0, 0), V=Vector(0, 10, 0))
+	socketio = SocketIO(engineio_logger=True, ping_timeout=120, message_queue='amqp://')
 	
+	def call_back_func1(perc):
+		socketio.emit('send_prog_perc', {'data':perc})
 	
-    
+	def call_back_func2(image):
+		my_buffer = cStringIO.StringIO()
+		image.save(my_buffer, format="JPEG")
+		encoded_string = base64.b64encode(my_buffer.getvalue())
+		socketio.emit('send_image', {'data':encoded_string})
+
+	raytracer.render_image(call_back_func1, call_back_func2)
+
+	   
 if __name__ == '__main__':
-    app.run(debug=True, port=4000)
+    app.debug = True
+    socketio.run(app, port=5000)
 
     

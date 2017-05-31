@@ -192,9 +192,12 @@ class RayTracer():
 			return (0, 0, 0)
 
 	
-	def render_image(self):
+	def render_image(self, call_back_func1, call_back_func2):
 		""" converting the position of pixels in a screen 2D to the correlate pixel positions in the viewport """
 		for i in range(self.size[0]):
+			perc = (float(i+1)/(self.size[0]))*100
+			if perc == 25 or perc == 50 or perc == 75 or perc == 100:
+				call_back_func1(perc)
 			for j in range(self.size[1]):
 				percentage_pos = self.screen2D.pixel_position_percentage(i, j) #finding pixel position percentage in the screen2D
 				view_port_pixel = self.viewportpos.percentage_to_point(percentage_pos[0], percentage_pos[1]) #converting pixel position percentage in the screen2D to the correlate pixel position in the viewport 
@@ -203,10 +206,8 @@ class RayTracer():
 				color = self.scene_intersect(ray, "air")
 				""" assign the color to the screen2D pixels """
 				self.screen2D.pixels[i,self.size[1] - j - 1] = color
-		self.screen2D.image.save("/Users/Pooneh/projects/applications/ray_tracer_app_flask/static/ray_pic.png")
-
-
+		image = self.screen2D.image
+		call_back_func2(image)
 
 		
-
 		

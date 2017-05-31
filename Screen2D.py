@@ -1,5 +1,4 @@
 
-
 from PIL import Image
 
 class Screen2D():
