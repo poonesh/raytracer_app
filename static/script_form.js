@@ -123,6 +123,10 @@ function createSphereParameter(i, dict){
 	/* When the Document Object Model ($(document)) is ready for JavaScript code to execute, a jQuery click event handler is 
 	implemented to add a multiple field form using the helper function getHTMLString(formCount).  */
 	$(document).ready(function() {
+		namespace = '/result';
+		var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+		
+		
 		console.log("here")
 	    $('#add_more').on('click', function(e) {
 	    	e.preventDefault(); 
@@ -169,7 +173,7 @@ function createSphereParameter(i, dict){
 				}
 			}
 		/* final object to be sent to flask using Ajax */	
-			var finalDic = {}
+			var finalDic = {};
 			finalDic["imageSize"] = $('#image-size-selector').val();
 			finalDic["dynamicForm"] = dynamicForm;
 			finalDic["lightPosition"] = $('#light-position').val();
@@ -181,20 +185,57 @@ function createSphereParameter(i, dict){
 				data: JSON.stringify(finalDic),
 				dataType: 'json',
 				contentType: 'application/json; charset=utf-8',
-				success: function(data){
-					console.log("passed the data")
-					$('#image').html('<img src="data:image/png;base64,' + data.data + '" />');
-
-				},
-				error: function(error){
-					console.log(error);
-
-				} 
+				success: function (result) {
+        			console.log(result);
+    			},
+    			failure: function (errMsg) {
+        			console.log(errMsg);
+    			}
 
 			});
 			return false;
 
 	  	});
+
+		/* sending percentage data from celery worker to the front end */		
+		socket.on('send_prog_perc', function(data) {
+        console.log(data.data);
+        });
+
+        socket.on('send_image', function(data) {
+        	document.getElementById('primitives-image').setAttribute( 'src', 'data:image/png;base64,'+ data.data);
+
+        });
+
 	});
 
+
+function testFunction(){
+		console.log("inside testFunction!")
+    	var finalDic = {};
+    	finalDic["imageSize"] = 128;
+    	finalDic["lightPosition"] = "(2, 6.5, -2)";
+    	finalDic["ambIllumination"] = 0.11;
+    	finalDic["dynamicForm"] = [{'sphere':{'color':'(255, 0, 0)', 'material':'normal', 'radius':'1', 'sphere-position':'(4, 4, -6)'}}]
+
+    	$.ajax({
+			type: 'POST',
+			url: '/result',
+			data: JSON.stringify(finalDic),
+			dataType: 'json',
+			contentType: 'application/json; charset=utf-8',
+			success: function (result) {
+        		console.log(result);
+    		},
+    		failure: function (errMsg) {
+        		console.log(errMsg);
+    		},
+    		error: function (errMsg) {
+        		console.log(errMsg);
+    		}
+
+		});
+		return false;
+
+    }
  
