@@ -81,7 +81,7 @@ function createSphereParameter(i, dict){
 	return sphere_dict;
 }
 
-
+	
 	var formCount = 1;  // global variable formCount
 
 	/* This jQuery click event handler removes the dynamically added forms for primitives in the scene of Ray Tracer. 
@@ -197,10 +197,23 @@ function createSphereParameter(i, dict){
 
 	  	});
 
-		/* sending percentage data from celery worker to the front end */		
+		/* sending percentage data from celery worker to the front end */
+		/* progress bar */
+				
 		socket.on('send_prog_perc', function(data) {
-        console.log(data.data);
+			console.log(data.data);
+			var elem = document.getElementById("progress");
+			var counter = data.data-25;
+			function progress(){
+				if (counter != data.data){
+					elem.style.width = counter*3 + 'px';
+					requestAnimationFrame(progress);
+					counter += 1;
+				}
+			}
+			progress();
         });
+
 
         socket.on('send_image', function(data) {
         	document.getElementById('primitives-image').setAttribute( 'src', 'data:image/png;base64,'+ data.data);
@@ -208,7 +221,6 @@ function createSphereParameter(i, dict){
         });
 
 	});
-
 
 function testFunction(){
 		console.log("inside testFunction!")
@@ -238,4 +250,6 @@ function testFunction(){
 		return false;
 
     }
+
+
  
