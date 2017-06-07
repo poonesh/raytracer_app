@@ -1,32 +1,43 @@
 
-.page-header
-{
-
+body{
+  background-image:url('../static/background-image6.jpg');
+  background-attachment:fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.page-header h3
+.page-header
 {
-	color: #000000;
+	color: #adadad;
+  border-bottom: none;
 }
 
 #main-content 
 {
-    margin: 0 auto;
-    background-color: #daa520;  
+  margin: 0 auto;
+  opacity: 0.85;
+  background-color: #3D362D; 
 }
 
+ /*image container properties */
 
-/* image container properties */
 #image-col
 {
-	background-color: #B8860B;
+  background-color: #3D362D;
+  color: #adadad;
 }
+
 
 .img-responsive{
 	max-width: 100%;
 	height: auto;
 	display:block;
+}
 
+#property-col
+{
+  background-color: #3D362D;
+  color: #adadad;
 }
 
 .center-block {
@@ -45,11 +56,6 @@
 {
 	display: block;
 	margin: 0 auto;
-}
-
-.container .image
-{
-
 }
 
 
@@ -71,24 +77,6 @@
 	width: 60px;
 }	
 
-#property-col
-{
-	background-color: #D2691E;
-}
-
-
-/*.form-inline  .input-mini
-{
-	width: 70px;
-	font-weight: bold;
-}
-
-
-.form-inline  .input-small
-{
-	width: 90px;
-	font-weight: bold;
-}*/
 
 input .SpherePosition
 {
@@ -138,7 +126,7 @@ input[type=range]::-webkit-slider-runnable-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #3071a9;
+  background: #848484;
   border-radius: 1.3px;
   border: 0.2px solid #010101;
 }
