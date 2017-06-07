@@ -10,11 +10,11 @@ function getHTMLString(formCount) {
                   '<option value="triangle">triangle</option>',
                 '</select> ',
                 '<input type="text" class="input-small form-control" id="radius'+ formCount +'"  name="Radius[]" step="any" placeholder="radius(r)" size="7"> ',
-                '<input type="text" class="form-control"  id="sphere-position'+ formCount +'" name="SpherePosition[]"  placeholder="position(x, y, z)" size="15"> ',
-                '<input type="text" class="A form-control" id="A-position'+ formCount +'" name="VerticeAPosition[]" placeholder="vertex(x, y, z)" size="15"> ',
-              	'<input type="text" class="B form-control" id="B-position'+ formCount +'" name="VerticeBPosition[]" placeholder="vertex(x, y, z)" size="15"> ',
-              	'<input type="text" class="C form-control" id="C-position'+ formCount +'" name="VerticeCPosition[]" placeholder="vertex(x, y, z)" size="15"> ',
-                '<input type="text" class="Sphere form-control" id="color'+ formCount +'" name="ColorSelect[]" placeholder="color(255, 255, 255)" size="20"> ',
+                '<input type="text" class="form-control"  id="sphere-position'+ formCount +'" name="SpherePosition[]"  placeholder="position(x, y, z)" size="13"> ',
+                '<input type="text" class="A form-control" id="A-position'+ formCount +'" name="VerticeAPosition[]" placeholder="vertex(x, y, z)" size="13"> ',
+              	'<input type="text" class="B form-control" id="B-position'+ formCount +'" name="VerticeBPosition[]" placeholder="vertex(x, y, z)" size="13"> ',
+              	'<input type="text" class="C form-control" id="C-position'+ formCount +'" name="VerticeCPosition[]" placeholder="vertex(x, y, z)" size="13"> ',
+                '<input type="text" class="Sphere form-control" id="color'+ formCount +'" name="ColorSelect[]" placeholder="color(255, 255, 255)" size="17"> ',
 		        '<select class="input-small form-control" id="material-selector'+ formCount +'" name="MaterialSelect[]"> ',
                 '<option value=" " disabled="" selected="">material</option>',
                 '<option value="normal">opaque</option>',
@@ -225,7 +225,7 @@ function createSphereParameter(i, dict){
 function testFunction(){
 		console.log("inside testFunction!")
     	var finalDic = {};
-    	finalDic["imageSize"] = 128;
+    	finalDic["imageSize"] = 256;
     	finalDic["lightPosition"] = "(2, 6.5, -2)";
     	finalDic["ambIllumination"] = 0.11;
     	finalDic["dynamicForm"] = [{'sphere':{'color':'(255, 0, 0)', 'material':'normal', 'radius':'1', 'sphere-position':'(4, 4, -6)'}}]
