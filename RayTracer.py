@@ -1,9 +1,10 @@
-
-from Vector import Vector 
+# import numba
+# from numba import jit
+from Vector import Vector
 from Ray import Ray
 from Triangle import Triangle
 from Sphere import Sphere
-from Triangle import Triangle 
+from Triangle import Triangle
 from Screen2D import Screen2D
 from Viewport import Viewport
 from PointLight import PointLight
@@ -145,7 +146,7 @@ class RayTracer():
 		for obj in self.list_of_primitives:
 			t = obj.get_intersect(ray.origin.clone(), ray.ray_dir.normalize().clone()) 
 			if t:
-				intersect_scale_dic[obj] = t	
+				intersect_scale_dic[obj] = t
 		if len(intersect_scale_dic) != 0:
 			t_min = min(intersect_scale_dic.itervalues())
 			intersected_obj = (min(intersect_scale_dic, key=intersect_scale_dic.get))
@@ -182,16 +183,16 @@ class RayTracer():
 			else:
 				# calling is_in_shadow function to check if the intersect point is in shadow or not
 				is_intersected = self.is_in_shadow(intersect_point.clone(), intersected_obj)
-				if is_intersected: 
-					return (0, 0, 0) 		
+				if is_intersected:
+					return (0, 0, 0)
 				else:
 				# calling illumination function if the intersect_point light_position Ray does not intersects with any other primitives 
 					final_color = self.illumination(ray, normal_vector, intersect_point, surface_color)
-					return final_color		
+					return final_color
 		else:
 			return (0, 0, 0)
 
-	
+	# @jit
 	def render_image(self, call_back_func1, call_back_func2):
 		""" converting the position of pixels in a screen 2D to the correlate pixel positions in the viewport """
 		for i in range(self.size[0]):
@@ -202,7 +203,7 @@ class RayTracer():
 				percentage_pos = self.screen2D.pixel_position_percentage(i, j) #finding pixel position percentage in the screen2D
 				view_port_pixel = self.viewportpos.percentage_to_point(percentage_pos[0], percentage_pos[1]) #converting pixel position percentage in the screen2D to the correlate pixel position in the viewport 
 				ray_dir = view_port_pixel.sub(self.camerapos.clone())
-				ray = Ray(self.camerapos.clone(), ray_dir.clone()) #defining a ray	
+				ray = Ray(self.camerapos.clone(), ray_dir.clone()) #defining a ray
 				color = self.scene_intersect(ray, "air")
 				""" assign the color to the screen2D pixels """
 				self.screen2D.pixels[i,self.size[1] - j - 1] = color
