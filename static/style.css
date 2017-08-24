@@ -1,10 +1,26 @@
 
-body{
+body
+{
   background-image:url('../static/background-image6.jpg');
   background-attachment:fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0;
+  /*fixed navbar*/
+  padding-top: 70px;
 }
+
+.navbar
+{
+  background: #3D362D;
+}
+
+/* General sizing, dropdown Login & Register */
+.dropdown-menu 
+{
+  width: 300px;
+}
+
 
 .page-header
 {
@@ -12,11 +28,25 @@ body{
   border-bottom: none;
 }
 
+#description-cont 
+{
+  color: #adadad;
+  padding: 15px 15px;
+}
+
+img
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -64px;
+  margin-top: -64px;
+}
+
 #main-content 
 {
-  margin: 0 auto;
-  opacity: 0.85;
-  background-color: #3D362D; 
+  margin: auto auto;
+  min-height: 500px;
 }
 
  /*image container properties */
@@ -24,32 +54,24 @@ body{
 #image-col
 {
   background-color: #3D362D;
+  opacity: 1;
   color: #adadad;
-}
-
-
-.img-responsive{
-	max-width: 100%;
-	height: auto;
-	display:block;
+  min-height: 500px;
 }
 
 #property-col
 {
   background-color: #3D362D;
   color: #adadad;
+  opacity: 0.85;
+  padding-right: 0;
+  min-height: 500px;
 }
 
-.center-block {
+.center-block{
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#image-size-selector
-{
-	width: 100px;
-	font-weight: bold;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .text-center
@@ -57,6 +79,7 @@ body{
 	display: block;
 	margin: 0 auto;
 }
+
 
 
 /* the size of the primitive fields */
@@ -215,14 +238,14 @@ input[type=range]:focus::-ms-fill-upper {
 .progressBar {
   width: 306px;
   height: 26px;
-  padding: 3px;
+  padding: 3px 3px 3px 3px;
   border-radius: 13px;
-  margin: 20px 20px;
+  margin: 10px 0;
   background-color: #bbb;
 }
 
 
-progress.progress {
+.progress {
   width: 0px;
   height: 20px;
   border-radius: 10px;
