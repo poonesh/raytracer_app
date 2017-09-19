@@ -1,0 +1,112 @@
+
+/*property column properties*/
+#property-col
+{
+  background-color: #3D362D;
+  color: #adadad;
+  opacity: 0.85;
+  padding-right: 0;
+  min-height: 650px;
+}
+
+.center-block{
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.text-center
+{
+	display: block;
+	margin: 0 auto;
+}
+
+/* the size of the primitive fields */
+#Point-Light-X
+{
+	width: 60px;
+}
+
+
+#Point-Light-Y
+{
+	width: 60px;
+}
+
+
+#Point-Light-Z
+{
+	width: 60px;
+}	
+
+
+input .SpherePosition
+{
+	width: 5px;
+	font-weight: bold;
+}
+
+
+/* hide and show primitive form */
+#A-position0
+{
+	display:none;
+}
+
+#B-position0
+{
+	display:none;
+}
+
+#C-position0
+{
+	display:none;
+}
+
+#triangle-color0
+{
+  display:none;
+}
+
+#triangle-material-selector0
+{
+  display:none;
+}
+
+/*recalculate button properties*/
+.btn-default{
+  background-color:#546e7a !important;
+  color:#fff;
+}
+
+/*add button properties*/
+.btn-add{
+  background-color:#bca136 !important;
+  /*#76323F*/
+  color:#fff;
+  border-style: solid;
+}
+
+
+/* progress bar */
+.progressBar {
+  width: 306px;
+  height: 26px;
+  padding: 3px 3px 3px 3px;
+  border-radius: 13px;
+  margin: 10px 0;
+  background-color: #bbb;
+}
+
+
+.progress {
+  width: 0px;
+  height: 20px;
+  border-radius: 10px;
+  -webkit-appearance: none;
+   
+}
+
+progress.progress::-webkit-progress-value { 
+    background: #0000ff; 
+}

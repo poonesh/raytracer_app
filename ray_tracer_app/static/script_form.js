@@ -22,7 +22,8 @@ function getHTMLString(formCount) {
 	                '<option value="mirror">mirror</option>',
               	'</select> ',
                 '<button type="button" class="btn btn-success btn-add" id="remove_more'+ formCount +'"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>',
-                '</button>',  
+                '</button>',
+                '<div id="dynamic-form-error"></div>',  
             '</div>',
     ].join('');
     return complex_html;
@@ -59,7 +60,6 @@ function createTriangleParameter(index, id_value_dict){
 	return triangle_dict;
 }
 
-
 /* This function takes two parameters, dict(which is a dictionary with unique ids of the fields for sphere primitive as the keys and the 
 values that the user fills for the fields) and index which is a value between 0 to 4 corresponding to a unique index for each primitive and its fields 
 in the dynamic form). This function returns an object(dictionary) with all the properties of a specific Triangle(Triangle0,....., Triangle4) 
@@ -90,186 +90,162 @@ function createSphereParameter(index, id_value_dict){
 }
 
 	
-	var formCount = 1;  // global variable formCount
+var formCount = 1;  // global variable formCount
 
-	/* This jQuery click event handler removes the dynamically added forms for primitives in the scene of Ray Tracer. 
-	Attach a click event to the <document> element where Jquery attribute start with selector is used, 
-	"[id^=remove_more]" (specified attribute begining exactly with a given string [name^='value']). This selector is useful for 
-	identifying elements produced by server-side frameworks where HTML produced with systematic element IDs. */ 
+/* This jQuery click event handler removes the dynamically added forms for primitives in the scene of Ray Tracer. 
+Attach a click event to the <document> element where Jquery attribute start with selector is used, 
+"[id^=remove_more]" (specified attribute begining exactly with a given string [name^='value']). This selector is useful for 
+identifying elements produced by server-side frameworks where HTML produced with systematic element IDs. */ 
 
-	$(document).on('click', '[id^=remove_more]', function(e){ 
-	    e.preventDefault(); // stops the default behaviour of an HTML element
-	
-	// 'this' is the DOM element which triggers the event. This line (closest()) returns the first form-inline 
-	// of the DOM element ('this') and remove it. (which starts with the current element here). 
-	    $(this).closest('div.form-inline').remove(); 
-	    formCount--;
-	});
+$(document).on('click', '[id^=remove_more]', function(e){ 
+    e.preventDefault(); // stops the default behaviour of an HTML element
+
+// 'this' is the DOM element which triggers the event. This line (closest()) returns the first form-inline 
+// of the DOM element ('this') and remove it. (which starts with the current element here). 
+    $(this).closest('div.form-inline').remove(); 
+    formCount--;
+});
 
 
-	/* This jQuery change event handler display the fields of the dynamic form based on the choosen primitive by the user.
-	If the choosen primitive is Sphere the .toggle() method shows $(SselectorString) otherwise shows $(TselectorString). */ 
+/* This jQuery change event handler display the fields of the dynamic form based on the choosen primitive by the user.
+If the choosen primitive is Sphere the .toggle() method shows $(SselectorString) otherwise shows $(TselectorString). */ 
 
-	$(document).on('change', '[id^=primitive-selector]', function() {
-	// 'this' here is DOM (HTML) element  and this.id.replace('primitive-selector', '') basically 
-	// returns the numeric part of id (which is produced here by server side)
-	    // console.log('here I am!')
-	    // console.log(this.id)
-	    var formCount = this.id.replace('primitive-selector', '');
-	    console.log(formCount)
-	    var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount + ', #C-position'+ formCount; 
-	    var SselectorString = '#radius'+ formCount + ', #sphere-position'+ formCount;
+$(document).on('change', '[id^=primitive-selector]', function() {
+// 'this' here is DOM (HTML) element  and this.id.replace('primitive-selector', '') basically 
+// returns the numeric part of id (which is produced here by server side)
+    // console.log('here I am!')
+    // console.log(this.id)
+    var formCount = this.id.replace('primitive-selector', '');
+    console.log(formCount)
+    var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount + ', #C-position'+ formCount; 
+    var SselectorString = '#radius'+ formCount + ', #sphere-position'+ formCount;
 
-	    console.log(TselectorString);
-	    console.log(SselectorString);
+    console.log(TselectorString);
+    console.log(SselectorString);
 
-	    var IsS = $(this).val() === "sphere";
-	    $(TselectorString).toggle(!IsS);
-	    $(SselectorString).toggle(IsS);
-	});
+    var IsS = $(this).val() === "sphere";
+    $(TselectorString).toggle(!IsS);
+    $(SselectorString).toggle(IsS);
+});
 
-	/* When the Document Object Model ($(document)) is ready for JavaScript code to execute, a jQuery click event handler is 
-	implemented to add a multiple field form using the helper function getHTMLString(formCount).  */
-	$(document).ready(function() {
-		// namespace = '/result';
-		var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+
+/* When the Document Object Model ($(document)) is ready for JavaScript code to execute, a jQuery click event handler is 
+implemented to add a multiple field form using the helper function getHTMLString(formCount).  */
+$(document).ready(function() {
+	console.log("here");
+    $('#add_more').on('click', function(e) {
+    	e.preventDefault(); 
+    	// console.log("addHere");
+    	// var radiusValue= document.getElementById("radius0").value;
+  //   	console.log("radiusValue");
+  //   	console.log(radiusValue);
+  //   	if (radiusValue === ""){
+  //     		document.getElementById("dynamic-form-error").innerHTML = "Please enter a valid radius in the format of (0, 0, 0)";
+  //     		$("#dynamic-form-error").css('color', 'red');
+  //     		return false;
+  //   	} 
+  //   	return(true);
+
+        if (formCount < 5) {
+            var html = getHTMLString(formCount);
+         	$('#dynamic_form .form-group').append(html);
+
+         	var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount + ', #C-position'+ formCount; 
+    		var SselectorString = '#radius'+ formCount + ', #sphere-position'+ formCount;
+		    
+			$(TselectorString).toggle(false);
+		    $(SselectorString).toggle(true);
+        } else {
+            return;
+        }
+        formCount++;
+    });
+
+    /* This jQuery event handler creates the final object (flask_sent_all_data_dict) which will be sent to Flask.*/ 
+    $('#the-form').on('submit', function(e) {
+    	e.preventDefault();
+     	var id_value_dict = {};
+ 	/* querySelectorAll returns all the children of ('div.form-inline > *'). Then creates an object(dictionary) with the keys(unique_ids) and 
+ 	values(values filled by the user) of all the children */  
+		var children = document.querySelectorAll('div.form-inline > *');
+		console.log("children", children);
+		for (var index=0; index<children.length; index++){
+			var id = children[index].id;
+			id = "#" + id;
+			var value = $(id).val();
+			id_value_dict[id] = value;
+		}
+
+
+		console.log("this is the dictionary", id_value_dict);
+	/* appending the sphere(flask_sent_sphere_dict) and triangle(flask_sent_triangle_dict) properties to dynamicForm_values */	
+		var dynamicForm_values = [];
+		for (var index=0; index<5; index++){
+			type = id_value_dict['#primitive-selector'+ index];
+			if (type === "sphere") {
+				var flask_sent_sphere_dict = createSphereParameter(index, id_value_dict);
+				dynamicForm_values[index] = flask_sent_sphere_dict;	 
+			} else if (type === "triangle") {
+				var flask_sent_triangle_dict = createTriangleParameter(index, id_value_dict);
+				dynamicForm_values[index] = flask_sent_triangle_dict;
+			}
+		}
+
+		/* flask_sent_all_data_dict object(dictionary) to be sent to flask using Ajax */
+		var flask_sent_all_data_dict = {};
+		flask_sent_all_data_dict["imageSize"] = $('#image-size-selector').val();
+		flask_sent_all_data_dict["dynamicForm"] = dynamicForm_values; // the value of this key is an array of input data by the user
+		flask_sent_all_data_dict["lightPosition"] = $('#light-position').val();
+		flask_sent_all_data_dict["ambIllumination"] = $('#ambient-illumination').val();
 		
-		
-		console.log("here")
-	    $('#add_more').on('click', function(e) {
-	    	e.preventDefault(); 
-	    	console.log("addHere")
-	        if (formCount < 5) {
-	            var html = getHTMLString(formCount);
-	         	$('#dynamic_form .form-group').append(html);
-
-	         	var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount + ', #C-position'+ formCount; 
-	    		var SselectorString = '#radius'+ formCount + ', #sphere-position'+ formCount;
-			    
-				$(TselectorString).toggle(false);
-			    $(SselectorString).toggle(true);
-	        } else {
-	            return;
-	        }
-	        formCount++;
-	    });
-
-	    /* This jQuery event handler creates the final object (flask_sent_all_data_dict) which will be sent to Flask.*/ 
-	    $('#the-form').on('submit', function(e) {
-	    	e.preventDefault();
-	     	var id_value_dict = {};
-	 	/* querySelectorAll returns all the children of ('div.form-inline > *'). Then creates an object(dictionary) with the keys(unique_ids) and 
-	 	values(values filled by the user) of all the children */  
-			var children = document.querySelectorAll('div.form-inline > *');
-			console.log("children", children)
-			for (var index=0; index<children.length; index++){
-				var id = children[index].id;
-				id = "#" + id;
-				var value = $(id).val();
-				id_value_dict[id] = value;
-			}
-
-
-			console.log("this is the dictionary", id_value_dict)
-		/* appending the sphere(flask_sent_sphere_dict) and triangle(flask_sent_triangle_dict) properties to dynamicForm_values */	
-			var dynamicForm_values = []
-			for (var index=0; index<5; index++){
-				type = id_value_dict['#primitive-selector'+ index];
-				if (type === "sphere") {
-					var flask_sent_sphere_dict = createSphereParameter(index, id_value_dict);
-					dynamicForm_values[index] = flask_sent_sphere_dict;	 
-				} else if (type === "triangle") {
-					var flask_sent_triangle_dict = createTriangleParameter(index, id_value_dict);
-					dynamicForm_values[index] = flask_sent_triangle_dict;
-				}
-			}
-		/* flask_sent_all_data_dict object(dictionary) to be sent to flask using Ajax */	
-			var flask_sent_all_data_dict = {};
-			flask_sent_all_data_dict["imageSize"] = $('#image-size-selector').val();
-			flask_sent_all_data_dict["dynamicForm"] = dynamicForm_values; // the value of this key is an array of input data by the user
-			flask_sent_all_data_dict["lightPosition"] = $('#light-position').val();
-			flask_sent_all_data_dict["ambIllumination"] = $('#ambient-illumination').val();
-
-			$.ajax({
-				type: 'POST',
-				url: '/result',
-				data: JSON.stringify(flask_sent_all_data_dict),
-				dataType: 'json',
-				contentType: 'application/json; charset=utf-8',
-				success: function (msg) {
-        			console.log(msg);
-        			if (msg.status !== 200) {
-        				alert(msg.message);
-        			}
-    			},
-    			failure: function (errMsg) {
-        			console.log(errMsg);
-    			}
-
-			});
-			return false;
-
-	  	});
-
-		/* sending percentage data from celery worker to the front end(progress bar) through socketio */
-		/* so the progress function checks if the counter is equal to data.data(percentage). If not it updates
-		the width of the "progress" element in HTML. Then rquestAnimationFrame() calls for progress and counter will be added by
-		one. This process continues till counter === data.data and stop updating the progress bar and waits for the next data.data(percentage) 
-		from backend.
-		requestAnimationFrame() is used because it waits until the browser is ready to update the page, so it will be smoother.
-		Also, requestAnimatinFrame() is asynchronous, so the app can still be used while the progress bar is loading.
-		 */
-				
-		socket.on('send_prog_perc', function(data) {
-			console.log(data.data)
-			var elem = document.getElementById("progress");
-			var counter = data.data-25;
-			function progress(){
-				if (counter != data.data){
-					elem.style.width = counter*3 + 'px'; // counter is multiplied by 3 in order to increase the width of progress bar to 300 px instead of 100 px
-					requestAnimationFrame(progress);
-					counter += 1;
-				}
-			}
-			progress();
-        });
-
-		// URI data of the image is sent to the front end through socketio
-        socket.on('send_image', function(data) {
-		// to set image source with base 64, setAttribute has been used.
-        	document.getElementById('primitives-image').setAttribute( 'src', 'data:image/png;base64,'+ data.data);
-        });
-
-	});
-
-function testFunction(){
-		console.log("inside testFunction!");
-    	var flask_sent_all_data_dict = {};
-    	flask_sent_all_data_dict["imageSize"] = 128;
-    	flask_sent_all_data_dict["lightPosition"] = "(2, 6.5, -2)";
-    	flask_sent_all_data_dict["ambIllumination"] = 0.11;
-    	flask_sent_all_data_dict["dynamicForm"] = [{'sphere':{'color':'(255, 0, 0)', 'material':'mirror', 'radius':'1', 'sphere-position':'(4, 4, -6)'}}]
-
-    	$.ajax({
+		$.ajax({
 			type: 'POST',
 			url: '/result',
 			data: JSON.stringify(flask_sent_all_data_dict),
 			dataType: 'json',
 			contentType: 'application/json; charset=utf-8',
 			success: function (msg) {
-        		console.log(msg);
-    		},
-    		failure: function (errMsg) {
-        		console.log(errMsg);
-    		},
-    		error: function (errMsg) {
-        		console.log(errMsg);
-    		}
+    			console.log(msg);
+    			if (msg.status !== 200) {
+    				alert(msg.message);
+    			}
+			},
+			failure: function (errMsg) {
+    			console.log(errMsg);
+			}
 
 		});
 		return false;
 
-    }
+  	});
 
+});	
 
- 
+function testFunction(){
+	console.log("inside testFunction!");
+	var flask_sent_all_data_dict = {};
+	flask_sent_all_data_dict["imageSize"] = 128;
+	flask_sent_all_data_dict["lightPosition"] = "(2, 6.5, -2)";
+	flask_sent_all_data_dict["ambIllumination"] = 0.11;
+	flask_sent_all_data_dict["dynamicForm"] = [{'sphere':{'color':'(255, 0, 0)', 'material':'mirror', 'radius':'1', 'sphere-position':'(4, 4, -6)'}}]
+
+	$.ajax({
+		type: 'POST',
+		url: '/result',
+		data: JSON.stringify(flask_sent_all_data_dict),
+		dataType: 'json',
+		contentType: 'application/json; charset=utf-8',
+		success: function (msg) {
+    		console.log(msg);
+		},
+		failure: function (errMsg) {
+    		console.log(errMsg);
+		},
+		error: function (errMsg) {
+    		console.log(errMsg);
+		}
+
+	});
+	return false;
+
+}

@@ -1,3 +1,6 @@
+<!-- {% import "bootstrap/wtf.html"  as wtf %} -->
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,14 +38,30 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="signup">Sign Up</a></li>
-          <li><a href="login">Login</a></li>
           <li><a href="logout">Logout</a></li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- end of the navbar -->
+  <!-- falsh message -->
+  <body>
+    {% block content %}
+      {% for message in get_flashed_messages() %}
+        <h1> {{ message }}! </h1>
+      {% endfor %}
+        <h3>Images</h3>
+        <div class="container">
+          <div class="row">
+            {% for image in images %}
+              <div class="col-md-2">
+                <img src="data:image/png;base64, {{ image }}" width="128" height="128"/>
+              </div>
+            {% endfor %}
+          <div>
+        </div>
+  </body>
+  <!-- {% endblock %} -->
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
