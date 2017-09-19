@@ -13,6 +13,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager,login_user, login_required, logout_user, current_user
 from flask.ext.login import AnonymousUserMixin
 from flask_bootstrap import Bootstrap
+from sqlalchemy import text
 import urllib2, base64, time, cStringIO, re
 
 from app_config import set_config
@@ -47,7 +48,7 @@ class Anonymous(AnonymousUserMixin):
 login_manager = LoginManager()
 login_manager.init_app(app) #passing app to login_manager for configuration
 login_manager.anonymous_user = Anonymous
-#login_manager.login_view = 'login' #if I want to use a @login_required decorator, login_manager.login_view 
+login_manager.login_view = 'login' #if I want to use a @login_required decorator, login_manager.login_view 
 # is also required. Not in this app though.
 
 @login_manager.user_loader
@@ -83,7 +84,7 @@ def login():
 				# return True if the password matches and Flase otherwis
 				if login_user(user):
 					flash('You just logged in!')
-					return redirect(url_for('my_form'))
+					return redirect(url_for('user'))
 		else:
 			flash('Error logging in!')
 			return redirect(url_for('login'))
@@ -108,6 +109,21 @@ def logout():
 	logout_user()
 	flash('You just logged out!')
 	return redirect(url_for('my_form'))
+
+
+@app.route('/profile')
+@login_required
+def user():
+	username = current_user.username
+	flash('Welcome, %s' %username)
+	id = current_user.id
+	#writing SQL query in SQLAlchemy
+	sql = text('select image from "user_image" where user_id='+str(id))
+	result = db.engine.execute(sql)
+	images = []
+	for res in result:
+		images.append(res[0])
+	return render_template('profile.html', images=images)
 
 
 @celery.task(name='task.result')
@@ -157,5 +173,6 @@ def result():
 
 
 if __name__ == '__main__':
-    app.debug = True
-    socketio.run(app, port=5000)
+	app.debug = True
+	socketio.run(app, port=5000)
+
