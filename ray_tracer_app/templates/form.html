@@ -15,7 +15,6 @@
     <link href="{{ url_for('static', filename='image_column_style.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='property_column_style.css') }}" rel="stylesheet">
     
-
     <!-- import jQuery -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript"  src = "{{ url_for('static', filename='script_form.js')}}"></script> 
@@ -141,13 +140,13 @@
                         <option value="sphere">sphere</option>
                         <option value="triangle">triangle</option>
                       </select>
-                      <input type="text" class="input-small form-control" id="radius0" name="Radius[]" step="any" placeholder="radius(r)" size="7">
-                      <input type="text" class="form-control" id="sphere-position0" name="SpherePosition[]" placeholder="position(x, y, z)" size="13">
-                      <input type="text" class="A form-control" id="A-position0" name="VerticeAPosition[]" placeholder="vertex(x, y, z)" size="13ss">
-                      <input type="text" class="B form-control" id="B-position0" name="VerticeBPosition[]" placeholder="vertex(x, y, z)" size="13">
-                      <input type="text" class="C form-control" id="C-position0" name="VerticeCPosition[]" placeholder="vertex(x, y, z)" size="13">
-                      <input type="text" class="Sphere form-control" id="color0" name="ColorSelect[]" placeholder="color(255, 255, 255)" size="17">
-                      <select class="input-small form-control" id="material-selector0" name="MaterialSelect[]">
+                      <input type="text" class="input-small form-control" id="radius0" name="Radius" step="any" placeholder="radius(r)" size="7">
+                      <input type="text" class="form-control" id="sphere-position0" name="SpherePosition" placeholder="position(x, y, z)" size="13">
+                      <input type="text" class="A form-control" id="A-position0" name="VerticeAPosition" placeholder="vertex(x, y, z)" size="13ss">
+                      <input type="text" class="B form-control" id="B-position0" name="VerticeBPosition" placeholder="vertex(x, y, z)" size="13">
+                      <input type="text" class="C form-control" id="C-position0" name="VerticeCPosition" placeholder="vertex(x, y, z)" size="13">
+                      <input type="text" class="Sphere form-control" id="color0" name="ColorSelect" placeholder="color(255, 255, 255)" size="17">
+                      <select class="input-small form-control" id="material-selector0" name="MaterialSelect">
                         <option value=" " disabled="" selected="">material</option>
                         <option value="normal">opaque</option>
                         <option value="glass">glass</option>
@@ -220,6 +219,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <!-- import jQueryui -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <!-- end of the main content of the body --> 
 </html>
 

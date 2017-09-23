@@ -9,13 +9,13 @@ function getHTMLString(formCount) {
                   '<option value="sphere">sphere</option>',
                   '<option value="triangle">triangle</option>',
                 '</select> ',
-                '<input type="text" class="input-small form-control" id="radius'+ formCount +'"  name="Radius[]" step="any" placeholder="radius(r)" size="7"> ',
-                '<input type="text" class="form-control"  id="sphere-position'+ formCount +'" name="SpherePosition[]"  placeholder="position(x, y, z)" size="13"> ',
-                '<input type="text" class="A form-control" id="A-position'+ formCount +'" name="VerticeAPosition[]" placeholder="vertex(x, y, z)" size="13"> ',
-              	'<input type="text" class="B form-control" id="B-position'+ formCount +'" name="VerticeBPosition[]" placeholder="vertex(x, y, z)" size="13"> ',
-              	'<input type="text" class="C form-control" id="C-position'+ formCount +'" name="VerticeCPosition[]" placeholder="vertex(x, y, z)" size="13"> ',
-                '<input type="text" class="Sphere form-control" id="color'+ formCount +'" name="ColorSelect[]" placeholder="color(255, 255, 255)" size="17"> ',
-		        '<select class="input-small form-control" id="material-selector'+ formCount +'" name="MaterialSelect[]"> ',
+                '<input type="text" class="input-small form-control" id="radius'+ formCount +'"  name="Radius'+ formCount +'" step="any" placeholder="radius(r)" size="7"> ',
+                '<input type="text" class="form-control"  id="sphere-position'+ formCount +'" name="SpherePosition'+ formCount +'"  placeholder="position(x, y, z)" size="13"> ',
+                '<input type="text" class="A form-control" id="A-position'+ formCount +'" name="VerticeAPosition'+ formCount +'" placeholder="vertex(x, y, z)" size="13"> ',
+              	'<input type="text" class="B form-control" id="B-position'+ formCount +'" name="VerticeBPosition'+ formCount +'" placeholder="vertex(x, y, z)" size="13"> ',
+              	'<input type="text" class="C form-control" id="C-position'+ formCount +'" name="VerticeCPosition'+ formCount +'" placeholder="vertex(x, y, z)" size="13"> ',
+                '<input type="text" class="Sphere form-control" id="color'+ formCount +'" name="ColorSelect'+ formCount +'" placeholder="color(255, 255, 255)" size="17"> ',
+		        '<select class="input-small form-control" id="material-selector'+ formCount +'" name="MaterialSelect'+ formCount +'"> ',
 	                '<option value=" " disabled="" selected="">material</option>',
 	                '<option value="normal">opaque</option>',
 	                '<option value="glass">glass</option>',
@@ -27,7 +27,6 @@ function getHTMLString(formCount) {
             '</div>',
     ].join('');
     return complex_html;
-
 }
 
 /* This function takes two parameters, dict(which is a dictionary with unique ids of the fields for triangle primitive as the keys and the 
@@ -113,8 +112,6 @@ If the choosen primitive is Sphere the .toggle() method shows $(SselectorString)
 $(document).on('change', '[id^=primitive-selector]', function() {
 // 'this' here is DOM (HTML) element  and this.id.replace('primitive-selector', '') basically 
 // returns the numeric part of id (which is produced here by server side)
-    // console.log('here I am!')
-    // console.log(this.id)
     var formCount = this.id.replace('primitive-selector', '');
     console.log(formCount)
     var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount + ', #C-position'+ formCount; 
@@ -128,27 +125,27 @@ $(document).on('change', '[id^=primitive-selector]', function() {
     $(SselectorString).toggle(IsS);
 });
 
-
 /* When the Document Object Model ($(document)) is ready for JavaScript code to execute, a jQuery click event handler is 
 implemented to add a multiple field form using the helper function getHTMLString(formCount).  */
 $(document).ready(function() {
 	console.log("here");
     $('#add_more').on('click', function(e) {
-    	e.preventDefault(); 
-    	// console.log("addHere");
-    	// var radiusValue= document.getElementById("radius0").value;
-  //   	console.log("radiusValue");
-  //   	console.log(radiusValue);
-  //   	if (radiusValue === ""){
-  //     		document.getElementById("dynamic-form-error").innerHTML = "Please enter a valid radius in the format of (0, 0, 0)";
-  //     		$("#dynamic-form-error").css('color', 'red');
-  //     		return false;
-  //   	} 
-  //   	return(true);
-
+    	e.preventDefault();
         if (formCount < 5) {
             var html = getHTMLString(formCount);
          	$('#dynamic_form .form-group').append(html);
+         	$('.A').each(function(){
+				$(this).rules('add', {
+					required: true,
+					messages: { required: "Required input" }
+				});
+			});
+			$('.B').each(function(){
+				$(this).rules('add', {
+					required: true,
+					messages: { required: "Required input" }
+				});
+			});
 
          	var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount + ', #C-position'+ formCount; 
     		var SselectorString = '#radius'+ formCount + ', #sphere-position'+ formCount;
@@ -161,63 +158,73 @@ $(document).ready(function() {
         formCount++;
     });
 
-    /* This jQuery event handler creates the final object (flask_sent_all_data_dict) which will be sent to Flask.*/ 
-    $('#the-form').on('submit', function(e) {
-    	e.preventDefault();
-     	var id_value_dict = {};
- 	/* querySelectorAll returns all the children of ('div.form-inline > *'). Then creates an object(dictionary) with the keys(unique_ids) and 
- 	values(values filled by the user) of all the children */  
-		var children = document.querySelectorAll('div.form-inline > *');
-		console.log("children", children);
-		for (var index=0; index<children.length; index++){
-			var id = children[index].id;
-			id = "#" + id;
-			var value = $(id).val();
-			id_value_dict[id] = value;
-		}
-
-
-		console.log("this is the dictionary", id_value_dict);
-	/* appending the sphere(flask_sent_sphere_dict) and triangle(flask_sent_triangle_dict) properties to dynamicForm_values */	
-		var dynamicForm_values = [];
-		for (var index=0; index<5; index++){
-			type = id_value_dict['#primitive-selector'+ index];
-			if (type === "sphere") {
-				var flask_sent_sphere_dict = createSphereParameter(index, id_value_dict);
-				dynamicForm_values[index] = flask_sent_sphere_dict;	 
-			} else if (type === "triangle") {
-				var flask_sent_triangle_dict = createTriangleParameter(index, id_value_dict);
-				dynamicForm_values[index] = flask_sent_triangle_dict;
+	var validator = $('#the-form').validate({
+		rules:{
+			Radius: {
+				required: true				
 			}
-		}
-
-		/* flask_sent_all_data_dict object(dictionary) to be sent to flask using Ajax */
-		var flask_sent_all_data_dict = {};
-		flask_sent_all_data_dict["imageSize"] = $('#image-size-selector').val();
-		flask_sent_all_data_dict["dynamicForm"] = dynamicForm_values; // the value of this key is an array of input data by the user
-		flask_sent_all_data_dict["lightPosition"] = $('#light-position').val();
-		flask_sent_all_data_dict["ambIllumination"] = $('#ambient-illumination').val();
-		
-		$.ajax({
-			type: 'POST',
-			url: '/result',
-			data: JSON.stringify(flask_sent_all_data_dict),
-			dataType: 'json',
-			contentType: 'application/json; charset=utf-8',
-			success: function (msg) {
-    			console.log(msg);
-    			if (msg.status !== 200) {
-    				alert(msg.message);
-    			}
-			},
-			failure: function (errMsg) {
-    			console.log(errMsg);
+		},
+		messages: {
+			Radius:{
+				required: "Please enter the field"
+			}
+		},
+		submitHandler: function(form, e) {
+			e.preventDefault();
+	     	var id_value_dict = {};
+		 	/* querySelectorAll returns all the children of ('div.form-inline > *'). Then creates an object(dictionary) with the keys(unique_ids) and 
+		 	values(values filled by the user) of all the children */  
+			var children = document.querySelectorAll('div.form-inline > *');
+			console.log("children", children);
+			for (var index=0; index<children.length; index++){
+				var id = children[index].id;
+				id = "#" + id;
+				var value = $(id).val();
+				id_value_dict[id] = value;
 			}
 
-		});
-		return false;
 
-  	});
+			console.log("this is the dictionary", id_value_dict);
+			/* appending the sphere(flask_sent_sphere_dict) and triangle(flask_sent_triangle_dict) properties to dynamicForm_values */	
+			var dynamicForm_values = [];
+			for (var index=0; index<5; index++){
+				type = id_value_dict['#primitive-selector'+ index];
+				if (type === "sphere") {
+					var flask_sent_sphere_dict = createSphereParameter(index, id_value_dict);
+					dynamicForm_values[index] = flask_sent_sphere_dict;	 
+				} else if (type === "triangle") {
+					var flask_sent_triangle_dict = createTriangleParameter(index, id_value_dict);
+					dynamicForm_values[index] = flask_sent_triangle_dict;
+				}
+			}
+	    
+			/* flask_sent_all_data_dict object(dictionary) to be sent to flask using Ajax */
+			var flask_sent_all_data_dict = {};
+			flask_sent_all_data_dict["imageSize"] = $('#image-size-selector').val();
+			flask_sent_all_data_dict["dynamicForm"] = dynamicForm_values; // the value of this key is an array of input data by the user
+			flask_sent_all_data_dict["lightPosition"] = $('#light-position').val();
+			flask_sent_all_data_dict["ambIllumination"] = $('#ambient-illumination').val();
+			
+			$.ajax({
+				type: 'POST',
+				url: '/result',
+				data: JSON.stringify(flask_sent_all_data_dict),
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				success: function (msg) {
+	    			console.log(msg);
+	    			if (msg.status !== 200) {
+	    				alert(msg.message);
+	    			}
+				},
+				failure: function (errMsg) {
+	    			console.log(errMsg);
+				}
+
+			});
+			return false;
+		}
+	});
 
 });	
 
@@ -249,3 +256,5 @@ function testFunction(){
 	return false;
 
 }
+
+
