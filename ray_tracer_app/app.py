@@ -14,7 +14,7 @@ from flask_login import LoginManager,login_user, login_required, logout_user, cu
 from flask.ext.login import AnonymousUserMixin
 from flask_bootstrap import Bootstrap
 from sqlalchemy import text
-import urllib2, base64, time, cStringIO, re
+import urllib2, base64, time, cStringIO
 
 from app_config import set_config
 from database import get_database
@@ -175,4 +175,3 @@ def result():
 if __name__ == '__main__':
 	app.debug = True
 	socketio.run(app, port=5000)
-

@@ -1,5 +1,4 @@
 
-
 $(document).ready(function() {
 	/* sending percentage data from celery worker to the front end(progress bar) through socketio */
 	/* so the progress function checks if the counter is equal to data.data(percentage). If not it updates
@@ -49,3 +48,4 @@ $(document).ready(function() {
 		$('modalImage').css({"height": imageSize});
     });
 });
+

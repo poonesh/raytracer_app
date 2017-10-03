@@ -110,3 +110,12 @@ input .SpherePosition
 progress.progress::-webkit-progress-value { 
     background: #0000ff; 
 }
+
+/*the color of the error message for jQuery validation form*/
+.error{
+  color: red;
+}
+
+.valid{
+  color: green;
+}

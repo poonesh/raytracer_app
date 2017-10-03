@@ -16,10 +16,13 @@
     <link href="{{ url_for('static', filename='property_column_style.css') }}" rel="stylesheet">
     
     <!-- import jQuery -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript"  src = "{{ url_for('static', filename='script_form.js')}}"></script> 
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+    <script src='/static/jquery-3.2.1.min.js'></script>
+    <script type="text/javascript"  src = "{{ url_for('static', filename='form.js')}}"></script> 
     <script type="text/javascript"  src = "{{ url_for('static', filename='progress_bar.js')}}"></script> 
     <script type="text/javascript"  src = "{{ url_for('static', filename='modal.js')}}"></script> 
+    <script type="text/javascript"  src = "{{ url_for('static', filename='ajax.js')}}"></script>
+    <script type="text/javascript"  src = "{{ url_for('static', filename='property_form_validation.js')}}"></script>
   <!--script type="text/javascript" src="/socket.io/socket.io.js"></script-->
   </head>
   <!-- start of the navbar -->
@@ -89,7 +92,7 @@
                 <!-- Trigger the modal -->
                 <div id="image-wrapper">
                   <img id="primitives-image">
-                  <img src="../static/picture.png" style="width:400px;height:400px;position:absolute;top:100px;left:45px;">
+                  <!-- <img src="../static/picture.png" style="width:400px;height:400px;position:absolute;top:100px;left:45px;"> -->
                   <!-- Trigger the modal -->
                   <div class="expand-position-for-picture" id="glyphicon-modal-trigger"><span class="glyphicon glyphicon-resize-full"></span></div>
                 </div>
@@ -136,17 +139,17 @@
                   <div class="form-group form-horizontal">
                     <label class="control-label">Primitives</label>
                     <div class="form-inline" id="primitive-form" action="/result">
-                      <select class="input-small form-control" id="primitive-selector0" name="PrimitiveChoose[]">   
+                      <select class="primitive-selector input-small form-control" id="primitive-selector0" name="PrimitiveChoose">   
                         <option value="sphere">sphere</option>
                         <option value="triangle">triangle</option>
                       </select>
-                      <input type="text" class="input-small form-control" id="radius0" name="Radius" step="any" placeholder="radius(r)" size="7">
-                      <input type="text" class="form-control" id="sphere-position0" name="SpherePosition" placeholder="position(x, y, z)" size="13">
-                      <input type="text" class="A form-control" id="A-position0" name="VerticeAPosition" placeholder="vertex(x, y, z)" size="13ss">
-                      <input type="text" class="B form-control" id="B-position0" name="VerticeBPosition" placeholder="vertex(x, y, z)" size="13">
-                      <input type="text" class="C form-control" id="C-position0" name="VerticeCPosition" placeholder="vertex(x, y, z)" size="13">
-                      <input type="text" class="Sphere form-control" id="color0" name="ColorSelect" placeholder="color(255, 255, 255)" size="17">
-                      <select class="input-small form-control" id="material-selector0" name="MaterialSelect">
+                      <input type="text" class="radius input-small form-control" id="radius0" name="Radius" step="any" placeholder="radius(r)" size="7">
+                      <input type="text" class="sphere-position form-control" id="sphere-position0" name="SpherePosition" placeholder="position(x, y, z)" size="13">
+                      <input type="text" class="vertex-A form-control" id="A-position0" name="VerticeAPosition" placeholder="vertex(x, y, z)" size="13ss">
+                      <input type="text" class="vertex-B form-control" id="B-position0" name="VerticeBPosition" placeholder="vertex(x, y, z)" size="13">
+                      <input type="text" class="vertex-C form-control" id="C-position0" name="VerticeCPosition" placeholder="vertex(x, y, z)" size="13">
+                      <input type="text" class="sphere-color form-control" id="color0" name="ColorSelect" placeholder="color(255, 255, 255)" size="17">
+                      <select class="material-selector input-small form-control" id="material-selector0" name="MaterialSelect">
                         <option value=" " disabled="" selected="">material</option>
                         <option value="normal">opaque</option>
                         <option value="glass">glass</option>
@@ -169,7 +172,7 @@
                   <div class="form-group">
                     <fieldset class="form-inline">
                       <label class="control-label">Point Light Position:</label>
-                      <input type="text" class="input-small form-control" id="light-position" placeholder="(x, y, z)" size="15">
+                      <input type="text" class="light-position input-small form-control" id="light-position" name="LightPosition" placeholder="(x, y, z)" size="15">
                       <!-- Add validation form error for light position -->
                       <div id="light-position-error"></div>
                     </fieldset>
@@ -191,9 +194,11 @@
                 <!-- end of range (ambient-illumination) -->
 
                 <!-- recalculate (submit button) -->
-                <div class="row">
+                <div class="control row">
                 <!-- Button trigger modal and submit the data form -->
                   <button type="submit" class="btn btn-default" id="Recalculate" aria-hidden="true">Recalculate</button>
+                  <!-- the division for validation error -->
+                  <div id="validation_error"></div>
                 </div>
                 <!-- end of recalculate (submit button)-->
                 <br>
@@ -215,7 +220,8 @@
     </body> 
   </div>
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+  <script src='/static/jquery-3.2.1.min.js'></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <!-- import jQueryui -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
