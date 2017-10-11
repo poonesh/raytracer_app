@@ -8,7 +8,7 @@ if socket.socket is gevent.socket.socket:
     print "gevent monkey patch has occurred"
 
 from flask import Flask, session, render_template, flash, redirect, url_for, request, json, jsonify, g
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, join_room
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager,login_user, login_required, logout_user, current_user
 from flask.ext.login import AnonymousUserMixin

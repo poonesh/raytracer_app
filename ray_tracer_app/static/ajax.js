@@ -35,6 +35,8 @@ $(document).ready(function(){
 		flask_sent_all_data_dict["dynamicForm"] = dynamicForm_values; // the value of this key is an array of input data by the user
 		flask_sent_all_data_dict["lightPosition"] = $('#light-position').val();
 		flask_sent_all_data_dict["ambIllumination"] = $('#ambient-illumination').val();
+
+		flask_sent_all_data_dict["sid"] = window.socket.id;
 		
 		$.ajax({
 			type: 'POST',

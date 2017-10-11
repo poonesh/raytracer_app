@@ -10,8 +10,9 @@ $(document).ready(function() {
 	 */
 	
 	// define socket
-	var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);		
-	
+	var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+
+	window.socket = socket;
 
 	socket.on('send_prog_perc', function(data) {
 		console.log(data.data);
