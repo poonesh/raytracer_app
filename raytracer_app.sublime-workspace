@@ -1,0 +1,1259 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"call",
+				"call_back_func1"
+			],
+			[
+				"screen",
+				"screen2D"
+			],
+			[
+				"primitive",
+				"primitive_selector"
+			],
+			[
+				"light",
+				"light_position"
+			],
+			[
+				"am",
+				"ambient_illumination"
+			],
+			[
+				"li",
+				"light_position"
+			],
+			[
+				"image",
+				"image_size"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"light_",
+				"light_position_coor"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"ambient",
+				"ambient_illumination_value"
+			],
+			[
+				"background-",
+				"background-color"
+			],
+			[
+				"pro",
+				"pro_bar"
+			],
+			[
+				"ray",
+				"ray_tracer"
+			],
+			[
+				"con",
+				"constant_multiply"
+			],
+			[
+				"ref",
+				"ref_ray_dir"
+			],
+			[
+				"Norma",
+				"Normal_dot_R_I"
+			],
+			[
+				"normal",
+				"Normal_Vector"
+			],
+			[
+				"R",
+				"R_r"
+			],
+			[
+				"Ray",
+				"RayTracer"
+			],
+			[
+				"ra",
+				"raytracer"
+			],
+			[
+				"surface",
+				"surface_color"
+			],
+			[
+				"vie",
+				"viewportpos"
+			],
+			[
+				"view",
+				"Viewport"
+			],
+			[
+				"point",
+				"point_light"
+			],
+			[
+				"Phy",
+				"Phy_grade"
+			],
+			[
+				"hello",
+				"hello_guest"
+			],
+			[
+				"s",
+				"SQLALCHEMY_MIGRATE_REPO"
+			],
+			[
+				"SQ",
+				"SQLALCHEMY_DATABASE_URI"
+			],
+			[
+				"S",
+				"SQLALCHEMY_DATABASE_URI"
+			],
+			[
+				"final",
+				"final_color"
+			],
+			[
+				"fina",
+				"final_color_G"
+			],
+			[
+				"is",
+				"is_intersected"
+			],
+			[
+				"list",
+				"list_of_primtives"
+			],
+			[
+				"intersect",
+				"intersect_point"
+			],
+			[
+				"triangle",
+				"triangle_right_1"
+			],
+			[
+				"int",
+				"intersect_point_a"
+			],
+			[
+				"nor",
+				"normal_plane_vec_rev"
+			],
+			[
+				"normal_plane",
+				"normal_plane_vec_rev"
+			],
+			[
+				"plane",
+				"plane_normal_ray_vec_dot"
+			],
+			[
+				"pla",
+				"plane_normal_ray_vec_dot"
+			],
+			[
+				"vec",
+				"vec_a_ray_origin"
+			],
+			[
+				"normL",
+				"normal_plane_vec"
+			],
+			[
+				"K",
+				"Kd"
+			],
+			[
+				"partia",
+				"partial_der_y"
+			],
+			[
+				"partial",
+				"partial_der_x"
+			],
+			[
+				"sub",
+				"sub_result"
+			],
+			[
+				"inter",
+				"intersect_point"
+			],
+			[
+				"vector",
+				"vector_O_C"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"marg",
+				"margin-left"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"func",
+				"func2call_2"
+			],
+			[
+				"assert",
+				"assertTrue"
+			],
+			[
+				"ad",
+				"build_adj_dict"
+			],
+			[
+				"idx",
+				"idx_list"
+			],
+			[
+				"new",
+				"new_list"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"game",
+				"GameStates"
+			],
+			[
+				"lis",
+				"list_of_possibilities"
+			],
+			[
+				"firing",
+				"firing_angle_vel_inc"
+			],
+			[
+				"New",
+				"NewMesh_verts"
+			],
+			[
+				"NewMesh",
+				"NewMesh_verts"
+			],
+			[
+				"my",
+				"my_verts"
+			],
+			[
+				"verts",
+				"verts3"
+			],
+			[
+				"vertices",
+				"vertices1"
+			],
+			[
+				"vert",
+				"vert_array"
+			],
+			[
+				"index",
+				"index_of_widget"
+			],
+			[
+				"y",
+				"y"
+			],
+			[
+				"num",
+				"num_seg"
+			],
+			[
+				"pt",
+				"pt_z"
+			],
+			[
+				"Bubb",
+				"Bubble_initial_pos"
+			],
+			[
+				"line",
+				"line_shoot"
+			],
+			[
+				"c",
+				"co_or"
+			],
+			[
+				"data",
+				"data_line"
+			],
+			[
+				"fi",
+				"final_floatdata_array"
+			],
+			[
+				"mag",
+				"magnitude_result_lat_lon_alt"
+			],
+			[
+				"ma",
+				"magnitudeB"
+			],
+			[
+				"uni",
+				"unit_vectorC"
+			],
+			[
+				"par",
+				"part_1"
+			],
+			[
+				"res",
+				"result_lat_lon_alt"
+			],
+			[
+				"u",
+				"unit_vectorB"
+			],
+			[
+				"unit",
+				"unit_vectorA"
+			],
+			[
+				"unit_",
+				"unit_vectorA"
+			],
+			[
+				"co",
+				"connected_airports_lat_lon"
+			],
+			[
+				"connected",
+				"connected_airports"
+			],
+			[
+				"airport",
+				"airport_dict"
+			],
+			[
+				"read",
+				"read_airports_data"
+			],
+			[
+				"move",
+				"move_ball"
+			],
+			[
+				"B",
+				"B"
+			],
+			[
+				"ca",
+				"canvas_index"
+			],
+			[
+				"convert",
+				"convertValue_to_name"
+			],
+			[
+				"list_",
+				"list_of_balls"
+			],
+			[
+				"collide",
+				"collideBalls"
+			],
+			[
+				"velocity",
+				"velocity_move"
+			],
+			[
+				"animate",
+				"animateFunction"
+			],
+			[
+				"E",
+				"EdgeDetection"
+			],
+			[
+				"out",
+				"outputPixAssignImage"
+			],
+			[
+				"left",
+				"left"
+			],
+			[
+				"current",
+				"currentValue-1"
+			],
+			[
+				"C",
+				"CENTER"
+			],
+			[
+				"create",
+				"createPicture"
+			],
+			[
+				"small",
+				"smallimage"
+			],
+			[
+				"g",
+				"gummyBear"
+			],
+			[
+				"moving",
+				"movingRU"
+			],
+			[
+				"shapeCoords",
+				"shapeCoordsRect"
+			],
+			[
+				"corner",
+				"cornerClicked"
+			],
+			[
+				"fir",
+				"firstClickx"
+			],
+			[
+				"click",
+				"clickFunction"
+			],
+			[
+				"Y",
+				"y_fc"
+			],
+			[
+				"last",
+				"lastMousePoint"
+			],
+			[
+				"event",
+				"eventcoord"
+			],
+			[
+				"e",
+				"eventcoord"
+			],
+			[
+				"color",
+				"colorModi"
+			],
+			[
+				"draw",
+				"drawCircle"
+			],
+			[
+				"ke",
+				"kernelC_x"
+			],
+			[
+				"inf",
+				"infixtoPostfixCon"
+			],
+			[
+				"cal",
+				"calculateArea"
+			],
+			[
+				"sha",
+				"shape_dict"
+			],
+			[
+				"repea",
+				"repeatShapeHelper"
+			],
+			[
+				"sh",
+				"shape_dict"
+			],
+			[
+				"repee",
+				"repeatShapeHelper"
+			],
+			[
+				"shapes",
+				"shapesToDraw"
+			],
+			[
+				"shape",
+				"shapeName"
+			],
+			[
+				"helo",
+				"HelloCircle"
+			],
+			[
+				"recta",
+				"rectangle"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "PointLight.py",
+			"settings":
+			{
+				"buffer_size": 824,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "RayTracer.py",
+			"settings":
+			{
+				"buffer_size": 9606,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Ray.py",
+			"settings":
+			{
+				"buffer_size": 1682,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test_Refraction.py",
+			"settings":
+			{
+				"buffer_size": 1304,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Sphere.py",
+			"settings":
+			{
+				"buffer_size": 2998,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Triangle.py",
+			"settings":
+			{
+				"buffer_size": 3183,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "static/style.css",
+			"settings":
+			{
+				"buffer_size": 3326,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app.py",
+			"settings":
+			{
+				"buffer_size": 5058,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/form.html",
+			"settings":
+			{
+				"buffer_size": 7300,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Screen2D.py",
+			"settings":
+			{
+				"buffer_size": 653,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Pooneh/projects/applications/stack-overflow-question-app/template/name_form.html",
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/templates/form.html",
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/static/style.css",
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/app.py",
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/static/bootstrap-3.3.7-dist 3/css/style.css",
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/templates/bootstrap-3.3.7-dist 3/form.html",
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/templates/bootstrap-3.3.7-dist 3/css/style.css",
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/main_file.py",
+		"/Users/Pooneh/projects/pyrt/.git/COMMIT_EDITMSG",
+		"/Users/Pooneh/projects/bubble-shooter/bubble-shooter/test_Bubble_Shooter.py",
+		"/Users/Pooneh/projects/pyrt/pyrt/test_help.py",
+		"/Users/Pooneh/projects/pyrt/pyrt/test_Ray.py",
+		"/Users/Pooneh/projects/pyrt/pyrt/test_Screen2D.py",
+		"/Users/Pooneh/projects/pyrt/pyrt/test_Sphere.py",
+		"/Users/Pooneh/projects/pyrt/pyrt/test_Triangle.py",
+		"/Users/Pooneh/projects/pyrt/pyrt/test_Vector.py",
+		"/Users/Pooneh/projects/pyrt/pyrt/test_Viewport.py",
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/templates/result.html",
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/RayTracer.py",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/test_Ray.py",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/test_Screen2D.py",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/test_Sphere.py",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/test_Triangle.py",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/test_Vector.py",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/test_Viewport.py",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/app.py",
+		"/Users/Pooneh/projects/applications/simple_example/venv/templates/languages.html",
+		"/Users/Pooneh/projects/applications/simple_example/venv/templates/result.html",
+		"/Users/Pooneh/projects/pyrt/pyrt/Raytracer.py",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/image.py",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/templates/student.html",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/templates/result.html",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/Hello.js",
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/venv/templates/form.html",
+		"/Users/Pooneh/projects/applications/todo_list_app_rest_flask/venv/templates/index.html",
+		"/Users/Pooneh/projects/applications/todo_list_app_rest_flask/venv/rest-server.py",
+		"/Users/Pooneh/projects/applications/student_app_flask/venv/ap.py",
+		"/Users/Pooneh/projects/flask_web_app_microblog/db_migrate.py",
+		"/Users/Pooneh/projects/flask_web_app_microblog/db_upgrade.py",
+		"/Users/Pooneh/projects/flask_web_app_microblog/config.py",
+		"/Users/Pooneh/projects/flask_web_app_microblog/db_downgrade.py",
+		"/Users/Pooneh/projects/flask_web_app_microblog/app/db_create.py",
+		"/Users/Pooneh/projects/flask_web_app_microblog/run.py",
+		"/Users/Pooneh/projects/flask_web_app_microblog/flask/bin/run.py",
+		"/Users/Pooneh/projects/pyrt/pyrt/Ray.py",
+		"/Users/Pooneh/projects/pyrt/pyrt/LightPoint.py",
+		"/Users/Pooneh/projects/pyrt/pyrt/test_Screen2D.py ",
+		"/Users/Pooneh/Desktop/mfirmin.github.io/_includes/footer.html",
+		"/Users/Pooneh/Desktop/mfirmin.github.io/about.html",
+		"/Users/Pooneh/Desktop/website-bootstrap/website/personal_website.html",
+		"/Users/Pooneh/Desktop/index.html",
+		"/Users/Pooneh/Desktop/website-bootstrap/index-form.html",
+		"/Users/Pooneh/Desktop/website-bootstrap/responsive-tabs.html",
+		"/Users/Pooneh/Desktop/website-bootstrap/modal-window.html",
+		"/Users/Pooneh/Desktop/website-bootstrap/panels-bootstrap.html",
+		"/Users/Pooneh/steno3dpy-notebooks/examples-steno/topography_project/RenderData_Temp.csv",
+		"/Users/Pooneh/Desktop/website/css/bootstrap.css",
+		"/Users/Pooneh/Desktop/website/js/bootstrap.js",
+		"/Users/Pooneh/projects/bubble-shooter/bubble-shooter/tk_picture_fake.py",
+		"/Users/pooneh/steno3dpy-notebooks/examples-steno/airport_project/steno_airport_example/.ipynb_checkpoints/Airports_Edited-checkpoint.ipynb",
+		"/Users/pooneh/steno3dpy-notebooks/examples-steno/airport_project/steno_airport_example/PointExample_Airports.ipynb",
+		"/Users/Pooneh/projects/BubbleShooter/Bubble_Shooter_Environment.py",
+		"/Users/Pooneh/projects/BubbleShooter/Bubble_Shooter_Tkinter.py",
+		"/Users/Pooneh/Downloads/p_solution000000.vtu",
+		"/Users/Pooneh/projects/BubbleShooter/Bubble.py",
+		"/Users/Pooneh/projects/BubbleShooter/Bubble_Line_Shooter.py",
+		"/Users/Pooneh/projects/BubbleShooter/bubble_shooter.sublime-project",
+		"/var/folders/kc/_9j7shhd31scsbjzpx2dc_680000gn/T/com.monosnap.monosnap/surfaceMap.py 2016-08-23 10-23-27.png",
+		"/Users/Pooneh/projects/python_meetup/anagram.py",
+		"/Users/Pooneh/projects/Tkinter/tkProject/painter.py",
+		"/Users/Pooneh/projects/imageprojects/imageManipulation/cah.jpg",
+		"/Users/Pooneh/projects/pictures/picture_test.py",
+		"/Users/Pooneh/projects/pictures/instructions.txt",
+		"/Users/Pooneh/projects/pictures/shapes.txt",
+		"/Users/Pooneh/projects/drawing/Paint.py",
+		"/Users/Pooneh/projects/pictures/picture.py",
+		"/Users/Pooneh/projects/pictures/readShapeTextFile.py",
+		"/Users/Pooneh/projects/pictures/TrianglePaintProperty.py",
+		"/Users/Pooneh/projects/pictures/read_shapes.txt",
+		"/Users/Pooneh/projects/pictures/read_textfile.py",
+		"/Users/Pooneh/projects/pictures/readFilePicture.py",
+		"/Users/Pooneh/projects/pictures/textfile_example.txt",
+		"/Users/Pooneh/projects/pictures/sample.txt",
+		"/Users/Pooneh/projects/pictures/picture copy.py",
+		"/Users/Pooneh/projects/pictures/output.png",
+		"/Users/Pooneh/projects/imageprojects/imageManipulation/imageManipulator.py",
+		"/Users/Pooneh/projects/classinpython/propertySetter.py",
+		"/Users/Pooneh/projects/classinpython/multiplyer_class.py",
+		"/Users/Pooneh/projects/drawing/TrianglePaintProperty.py",
+		"/Users/Pooneh/projects/drawing/triangleDrawing.py",
+		"/Users/Pooneh/projects/drawing/paintProperty.py",
+		"/Users/Pooneh/projects/classinpython/carclass.py",
+		"/Users/Pooneh/projects/classinpython/shapes.py",
+		"/Users/Pooneh/projects/Dictionary/hashmap.py",
+		"/Users/Pooneh/projects/classinpython/property.py",
+		"/Users/Pooneh/projects/classinpython/test.py",
+		"/Users/Pooneh/projects/classinpython/personclass.py",
+		"/Users/Pooneh/projects/Dictionary/hashmap2.py",
+		"/Users/Pooneh/projects/Hello World/listmodifications.py",
+		"/Users/Pooneh/projects/Hello World/dictionary.py",
+		"/Users/Pooneh/projects/Hello World/passwordcheck-looppython-ex15.py",
+		"/Users/Pooneh/projects/classinpython/bankclass.py",
+		"/Users/Pooneh/Desktop/imageManipulator.py",
+		"/Users/Pooneh/projects/Hello World/World.py",
+		"/Users/Pooneh/projects/Hello World/adder.py",
+		"/Users/Pooneh/projects/Hello World/calculator.py",
+		"/Users/Pooneh/projects/Hello World/Hello World.py"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Library/Python/2.7/site-packages/six",
+			"/Library/Python/2.7/site-packages/steno3d",
+			"",
+			"/Users/pooneh/steno3dpy-notebooks/examples-steno/airport_project/steno_airport_example",
+			"/Users/pooneh/steno3dpy-notebooks/examples-steno/Rocket_Engine/steno_rocket_example/",
+			"/Users/pooneh/steno3dpy-notebooks/examples-steno/brain_volume_example/MRbrain/",
+			"/Users/pooneh/steno3dpy-notebooks/examples-steno/mesh2Dgrid/",
+			"/Users/Pooneh/steno3dpy-notebooks/examples-steno/mesh2Dgrid/SurfaceExample_Mesh2DGrid_topography.ipynb",
+			"<open files>,/Users/Pooneh/steno3dpy-notebooks/examples-steno/mesh2Dgrid/SurfaceExample_Mesh2DGrid_topography.ipynb",
+			"<open files>,/Users/Pooneh/steno3dpy-notebooks/examples-steno/mesh2Dgrid"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"IMAGE",
+			"data",
+			"assertEqual",
+			"origin",
+			"ray",
+			"normal_vector",
+			"input",
+			"input-small",
+			"input-medium",
+			"name=\"X\"",
+			"element",
+			"element-1",
+			"text",
+			"600",
+			"400",
+			"40",
+			"30",
+			"25",
+			"20",
+			"8",
+			")",
+			"/progress",
+			"progress",
+			"result_vector",
+			"show",
+			"self_",
+			"is_in_shadow",
+			"list_of_primtives",
+			"intersect_point.clone().sub",
+			"300",
+			"normal_plane_vec",
+			"normal",
+			"point_light",
+			"point",
+			"sub",
+			"self",
+			"x",
+			"sphere",
+			"Sphere",
+			"sphere",
+			"red",
+			"normalized",
+			"]",
+			"[",
+			".z",
+			".y",
+			".x",
+			".x ",
+			"self.",
+			"v.",
+			".z",
+			".z ",
+			".y ",
+			".x",
+			"self",
+			"v",
+			".z",
+			".x",
+			".y",
+			"v.",
+			"v",
+			"self",
+			".z",
+			".y",
+			".x",
+			".y",
+			"y",
+			"v.",
+			"v",
+			"self",
+			"NewBase",
+			"h1",
+			"Button",
+			"ol-xs-6",
+			"3",
+			"md",
+			"6",
+			"active",
+			"get_count",
+			"Bubble_last_pos",
+			"dist",
+			"load bubble ",
+			"#191970",
+			"#6495ED",
+			"#19197",
+			"#6495ED",
+			"#a52a2a",
+			"#a52a2a\n",
+			"#6495ED\n",
+			")\n",
+			"6",
+			"5",
+			"0",
+			"zdim",
+			"xdim",
+			"line",
+			"data",
+			"last_x",
+			" =",
+			"] ",
+			"len(h3)",
+			"len(h2)",
+			"data",
+			"initial_vel",
+			"self",
+			"B",
+			"def",
+			"(i)",
+			"(pos)",
+			"viewBall",
+			"ball",
+			"ball1",
+			"ball",
+			"self.width",
+			"class",
+			"self.conversionEDGS()\n",
+			"moveImage",
+			"%s",
+			"s",
+			"height",
+			"x",
+			"rand",
+			"img_array",
+			"800",
+			"500",
+			"self.speed",
+			"True",
+			"ClickedCirc"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"#000080	",
+			"#191970",
+			"#19197",
+			"#191970",
+			"#a52a2a"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 7,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "PointLight.py",
+					"settings":
+					{
+						"buffer_size": 824,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "RayTracer.py",
+					"settings":
+					{
+						"buffer_size": 9606,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9339,
+								9339
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2530.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Ray.py",
+					"settings":
+					{
+						"buffer_size": 1682,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "test_Refraction.py",
+					"settings":
+					{
+						"buffer_size": 1304,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								295,
+								295
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Sphere.py",
+					"settings":
+					{
+						"buffer_size": 2998,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Triangle.py",
+					"settings":
+					{
+						"buffer_size": 3183,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "static/style.css",
+					"settings":
+					{
+						"buffer_size": 3326,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app.py",
+					"settings":
+					{
+						"buffer_size": 5058,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4446,
+								4446
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1210.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "templates/form.html",
+					"settings":
+					{
+						"buffer_size": 7300,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1701,
+								1701
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 494.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "Screen2D.py",
+					"settings":
+					{
+						"buffer_size": 653,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 416.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"ban",
+				"/Users/Pooneh/projects/classinpython/bankclass.py"
+			],
+			[
+				"imag",
+				"/Users/Pooneh/Desktop/imageManipulator.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 151.0,
+	"status_bar_visible": true
+}

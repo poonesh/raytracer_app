@@ -96,7 +96,7 @@ class RayTracer():
 		#1. calculate ray from intersect point to light source
 		light_intersect_vector = self.lights[0].position.clone().sub(intersect_point)
 		t_ray_light = light_intersect_vector.mag()
-		light_intersect_ray = Ray(origin = intersect_point.clone(), ray_dir= light_intersect_vector.normalize())
+		light_intersect_ray = Ray(origin =intersect_point.clone(), ray_dir= light_intersect_vector.normalize())
 		#2. determine if ray intersects any OTHER primitives
 		is_intersected = False
 		for test_obj in self.list_of_primitives:
@@ -193,22 +193,36 @@ class RayTracer():
 			return (0, 0, 0)
 
 	# @jit
-	def render_image(self, call_back_func1, call_back_func2):
-		""" converting the position of pixels in a screen 2D to the correlate pixel positions in the viewport """
+	def render_image(self, call_back_func_progress_percentage, call_back_func_send_image):
+		""" 
+		Two call_back_function is passed to the render_image function where the first one send the percentage progress of rendering image to the front end
+		and the second one send the rendered image to the front end. In order to render image, this function converts the position of pixels in a screen 2D 
+		to the correlate pixel positions in the viewport and claculates the ray direction and also color of the picture.
+		 """
+		#looping over the size of the width of screen2D
 		for i in range(self.size[0]):
+			#calculate the percentage of the pixel position corresponding to the width of the screen2D image
 			perc = (float(i+1)/(self.size[0]))*100
 			if perc == 25 or perc == 50 or perc == 75 or perc == 100:
-				call_back_func1(perc)
+				#call back function to send the percentage of the calculation progress to the front end in app.py file
+				call_back_func_progress_percentage(perc)
+			#looping over the height of the image
 			for j in range(self.size[1]):
-				percentage_pos = self.screen2D.pixel_position_percentage(i, j) #finding pixel position percentage in the screen2D
-				view_port_pixel = self.viewportpos.percentage_to_point(percentage_pos[0], percentage_pos[1]) #converting pixel position percentage in the screen2D to the correlate pixel position in the viewport 
+				#finding pixel position percentage in the screen2D
+				percentage_pos = self.screen2D.pixel_position_percentage(i, j)
+				 #converting pixel position percentage in the screen2D to the correlate pixel position in the viewport 
+				view_port_pixel = self.viewportpos.percentage_to_point(percentage_pos[0], percentage_pos[1])
 				ray_dir = view_port_pixel.sub(self.camerapos.clone())
 				ray = Ray(self.camerapos.clone(), ray_dir.clone()) #defining a ray
 				color = self.scene_intersect(ray, "air")
-				""" assign the color to the screen2D pixels """
+				""" assign the color to the screen2D pixels
+					(x,y) === (0,0) is defined at the bottom left corner of the viewport but at the top left corner or the screen2D.
+					so to avoid rendering the image upside down we need to convert the pixels by having self.size[1] - j - 1 unless we
+					define the viewport as U= vector(-5, 0, 0) and V= vector(0, -5, 0) where we can assign the color to the screen2D.pixels[i, j] = color.
+				"""
 				self.screen2D.pixels[i,self.size[1] - j - 1] = color
 		image = self.screen2D.image
-		call_back_func2(image)
+		call_back_func_send_image(image)
 
-		
-		
+
+

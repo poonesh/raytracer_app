@@ -16,8 +16,4 @@ class Viewport():
 		V_vector = self.V.clone().constant_multiply(v_percentage/100.0)
 		view_port_pixel = self.O.clone().add(U_vector).add(V_vector)
 		return view_port_pixel
-
-
-
-
-  
+ 

@@ -1,0 +1,29 @@
+
+/*image column style*/
+#image-col
+{
+  background-color: #3D362D;
+  opacity: 1;
+  color: #adadad;
+  min-height: 650px;
+}
+
+#image-wrapper
+{
+  position:absolute;
+  margin:auto;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+#primitives-image
+{
+  position:absolute;
+  margin:auto;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}

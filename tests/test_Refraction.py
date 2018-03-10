@@ -1,5 +1,5 @@
 
-import unittest 
+import unittest
 from Vector import Vector
 from Ray import Ray
 import math
