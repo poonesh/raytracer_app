@@ -519,91 +519,16 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "PointLight.py",
-			"settings":
-			{
-				"buffer_size": 824,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "RayTracer.py",
-			"settings":
-			{
-				"buffer_size": 9606,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Ray.py",
-			"settings":
-			{
-				"buffer_size": 1682,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "test_Refraction.py",
-			"settings":
-			{
-				"buffer_size": 1304,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Sphere.py",
-			"settings":
-			{
-				"buffer_size": 2998,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Triangle.py",
-			"settings":
-			{
-				"buffer_size": 3183,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "static/style.css",
-			"settings":
-			{
-				"buffer_size": 3326,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app.py",
-			"settings":
-			{
-				"buffer_size": 5058,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/form.html",
-			"settings":
-			{
-				"buffer_size": 7300,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Screen2D.py",
-			"settings":
-			{
-				"buffer_size": 653,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -611,7 +536,11 @@
 	},
 	"console":
 	{
-		"height": 0.0
+		"height": 0.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
 	},
 	"distraction_free":
 	{
@@ -622,8 +551,25 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Users/Pooneh/projects/applications/ray_tracer_app_flask",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/static",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/templates",
+		"/Users/Pooneh/projects/applications/RayTracer_app/ray_tracer_app_flask"
+	],
 	"file_history":
 	[
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/Screen2D.py",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/templates/form.html",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/static/style.css",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/Triangle.py",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/Sphere.py",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/test_Refraction.py",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/Ray.py",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/RayTracer.py",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/app.py",
+		"/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/PointLight.py",
 		"/Users/Pooneh/projects/applications/stack-overflow-question-app/template/name_form.html",
 		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/templates/form.html",
 		"/Users/Pooneh/projects/applications/ray_tracer_app_flask/static/style.css",
@@ -734,11 +680,11 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 54.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 154.0,
 		"where_history":
 		[
 			"/Library/Python/2.7/site-packages/six",
@@ -893,7 +839,7 @@
 		"regex": true,
 		"replace_history":
 		[
-			"#000080	",
+			"#000080\t",
 			"#191970",
 			"#19197",
 			"#191970",
@@ -908,281 +854,8 @@
 	"groups":
 	[
 		{
-			"selected": 7,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "PointLight.py",
-					"settings":
-					{
-						"buffer_size": 824,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "RayTracer.py",
-					"settings":
-					{
-						"buffer_size": 9606,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9339,
-								9339
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2530.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Ray.py",
-					"settings":
-					{
-						"buffer_size": 1682,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "test_Refraction.py",
-					"settings":
-					{
-						"buffer_size": 1304,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								295,
-								295
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "Sphere.py",
-					"settings":
-					{
-						"buffer_size": 2998,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "Triangle.py",
-					"settings":
-					{
-						"buffer_size": 3183,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "static/style.css",
-					"settings":
-					{
-						"buffer_size": 3326,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app.py",
-					"settings":
-					{
-						"buffer_size": 5058,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4446,
-								4446
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1210.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "templates/form.html",
-					"settings":
-					{
-						"buffer_size": 7300,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1701,
-								1701
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 494.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "Screen2D.py",
-					"settings":
-					{
-						"buffer_size": 653,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1217,10 +890,20 @@
 		]
 	},
 	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
 	"output.exec":
 	{
 		"height": 416.0
 	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "raytracer_app.sublime-project",
 	"replace":
 	{
 		"height": 64.0
@@ -1229,6 +912,7 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -1245,15 +929,32 @@
 	"select_project":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
 		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
 	},
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 151.0,
-	"status_bar_visible": true
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }

@@ -33,30 +33,38 @@ class RayTracer():
 		# triangle_2 = Triangle(a= Vector(4, 1, -5), b= Vector(5, 4, -5), c= Vector(6, 1, -5), color= Vector(72, 61, 139))
 
 		# cornell box components
-		triangle_back_1 = Triangle(a= Vector(1, 1, -8), b= Vector(9, 1, -8), c= Vector(1, 9, -8), color= Vector(255, 215, 0))
-		triangle_back_2 = Triangle(a= Vector(9, 9, -8), b= Vector(9, 1, -8), c= Vector(1, 9, -8), color= Vector(255, 215, 0))
+		# triangle_back_1 = Triangle(a= Vector(1, 1, -8), b= Vector(9, 1, -8), c= Vector(1, 9, -8), color= Vector(255, 215, 0))
+		# triangle_back_2 = Triangle(a= Vector(9, 9, -8), b= Vector(9, 1, -8), c= Vector(1, 9, -8), color= Vector(255, 215, 0))
 
-		triangle_right_1 = Triangle(a= Vector(9, 9, -8), b= Vector(9, 1, -8), c= Vector(9, 1, 0), color= Vector(205, 205, 201))
-		triangle_right_2 = Triangle(a= Vector(9, 9, -8), b= Vector(9, 1, 0), c= Vector(9, 9, 0), color= Vector(205, 205, 201))
+		# triangle_right_1 = Triangle(a= Vector(9, 9, -8), b= Vector(9, 1, -8), c= Vector(9, 1, 0), color= Vector(205, 205, 201))
+		# triangle_right_2 = Triangle(a= Vector(9, 9, -8), b= Vector(9, 1, 0), c= Vector(9, 9, 0), color= Vector(205, 205, 201))
 
-		triangle_top_1 = Triangle(a= Vector(1, 9, -8), b= Vector(9, 9, -8), c= Vector(1, 9, 0), color= Vector(176, 224, 230))
-		triangle_top_2 = Triangle(a= Vector(1, 9, 0), b= Vector(9, 9, 0), c= Vector(9, 9, -8), color= Vector(176, 224, 230))
+		# triangle_top_1 = Triangle(a= Vector(1, 9, -8), b= Vector(9, 9, -8), c= Vector(1, 9, 0), color= Vector(176, 224, 230))
+		# triangle_top_2 = Triangle(a= Vector(1, 9, 0), b= Vector(9, 9, 0), c= Vector(9, 9, -8), color= Vector(176, 224, 230))
 
-		triangle_left_1 = Triangle(a= Vector(1, 1, -8), b= Vector(1, 9, -8), c= Vector(1, 1, 0), color= Vector(255, 69, 0))
-		triangle_left_2 = Triangle(a= Vector(1, 1, 0), b= Vector(1, 9, -8), c= Vector(1, 9, 0), color= Vector(255, 69, 0))
+		# triangle_left_1 = Triangle(a= Vector(1, 1, -8), b= Vector(1, 9, -8), c= Vector(1, 1, 0), color= Vector(255, 69, 0))
+		# triangle_left_2 = Triangle(a= Vector(1, 1, 0), b= Vector(1, 9, -8), c= Vector(1, 9, 0), color= Vector(255, 69, 0))
 
-		triangle_bottom_1 = Triangle(a= Vector(1, 1, -8), b= Vector(9, 1, -8), c= Vector(1, 1, 0), color= Vector(70, 130, 180), material="mirror")
-		triangle_bottom_2 = Triangle(a= Vector(1, 1, 0), b= Vector(9, 1, 0), c= Vector(9, 1, -8), color= Vector(70, 130, 180), material="mirror")
+		# triangle_bottom_1 = Triangle(a= Vector(1, 1, -8), b= Vector(9, 1, -8), c= Vector(1, 1, 0), color= Vector(70, 130, 180), material="mirror")
+		# triangle_bottom_2 = Triangle(a= Vector(1, 1, 0), b= Vector(9, 1, 0), c= Vector(9, 1, -8), color= Vector(70, 130, 180), material="mirror")
 
 
-		# appending the objects in the scene to a list (list_of_primitives) 
-		# self.list_of_primitives.append(sphere_1)
-		# self.list_of_primitives.append(sphere_2)
-		# self.list_of_primitives.append(sphere_3)
-		# self.list_of_primitives.append(sphere_4)
-		# # self.list_of_primitives.append(sphere_5)
-		# self.list_of_primitives.append(triangle_1)
-		# self.list_of_primitives.append(triangle_2)
+		# cornell box components
+		triangle_back_1 = Triangle(a= Vector(0, 0, 10), b= Vector(10, 0, 10), c= Vector(0, 10, 10), color= Vector(255, 215, 0))
+		triangle_back_2 = Triangle(a= Vector(0, 10, 10), b= Vector(10, 0, 10), c= Vector(10, 10, 10), color= Vector(255, 215, 0))
+
+		triangle_right_1 = Triangle(a= Vector(10, 10, 10), b= Vector(10, 0, 10), c= Vector(10, 0, 0), color= Vector(205, 205, 201))
+		triangle_right_2 = Triangle(a= Vector(10, 10, 10), b= Vector(10, 0, 0), c= Vector(10, 10, 0), color= Vector(205, 205, 201))
+
+		triangle_top_1 = Triangle(a= Vector(0, 10, 10), b= Vector(10, 10, 10), c= Vector(0, 10, 0), color= Vector(176, 224, 230))
+		triangle_top_2 = Triangle(a= Vector(0, 10, 0), b= Vector(10, 10, 0), c= Vector(10, 10, 10), color= Vector(176, 224, 230))
+
+		triangle_left_1 = Triangle(a= Vector(0, 0, 10), b= Vector(0, 10, 10), c= Vector(0, 0, 0), color= Vector(255, 69, 0))
+		triangle_left_2 = Triangle(a= Vector(0, 0, 0), b= Vector(0, 10, 10), c= Vector(0, 10, 0), color= Vector(255, 69, 0))
+
+		triangle_bottom_1 = Triangle(a= Vector(0, 0, 10), b= Vector(10, 0, 10), c= Vector(0, 0, 0), color= Vector(70, 130, 180))
+		triangle_bottom_2 = Triangle(a= Vector(0, 0, 0), b= Vector(10, 0, 0), c= Vector(10, 0, 10), color= Vector(70, 130, 180))
+
 
 		for prim in self.primitives:
 			print "prim", prim
