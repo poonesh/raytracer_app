@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/Pooneh/projects/applications/RayTracer_app/ray_tracer_app_flask/render_primitives')
+sys.path.append('/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/render_primitives')
 
 import gevent.monkey, gevent.socket
 import socket
@@ -137,7 +137,7 @@ def final_result(light_position, image_size, ambient_illumination, dynamicFormDa
 	x, y, z = vectorElem(light_position)
 	primitiveObjs = readDynamicForm(dynamicFormData)
 	pointlight = PointLight(position=Vector(x, y, z), color=Vector(255, 255, 255), Ka=ambient_illumination) 
-	raytracer = RayTracer(screen2D=[image_size, image_size], primitives=primitiveObjs, lights=[pointlight], camerapos=Vector(7.5, 5, 10), O=Vector(0, 0, 0), U=Vector(10, 0, 0), V=Vector(0, 10, 0))
+	raytracer = RayTracer(screen2D=[image_size, image_size], primitives=primitiveObjs, lights=[pointlight], camerapos=Vector(5, 5, -10), O=Vector(0, 0, 0), U=Vector(10, 0, 0), V=Vector(0, 10, 0))
 	socketio = SocketIO(engineio_logger=True, ping_timeout=120, message_queue='amqp://')
 	
 	def call_back_func_progress_percentage(perc):
