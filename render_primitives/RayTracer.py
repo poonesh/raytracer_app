@@ -23,47 +23,14 @@ class RayTracer():
 		self.screen2D = Screen2D(screen2D[0], screen2D[1])
 		self.size = self.screen2D.image.size
 
-		# primitives
-		# sphere_1 = Sphere(position=Vector(4, 4, -6), radius=1.0, color=Vector(255, 255, 224))  #gray
-		# sphere_2 = Sphere(position=Vector(7, 2, -4), radius=1.0, color=Vector(50, 205, 50))  #green
-		# sphere_3 = Sphere(position=Vector(2, 2, -3), radius=1.5, color=Vector(255, 255, 255), material = "mirror")
-		# sphere_4 = Sphere(position=Vector(8, 2, -2), radius=0.5, color=Vector(0, 0, 0), material = "mirror") 
-		# sphere_5 = Sphere(position=Vector(3, 3, -3), radius=1.0, color=Vector(255, 255, 255), material = "glass")
-		# triangle_1 = Triangle(b= Vector(7, 2, -7), a= Vector(6, 5, -7), c= Vector(5, 2, -7), color= Vector(205, 92, 92))
-		# triangle_2 = Triangle(a= Vector(4, 1, -5), b= Vector(5, 4, -5), c= Vector(6, 1, -5), color= Vector(72, 61, 139))
-
+		
 		# cornell box components
-		# triangle_back_1 = Triangle(a= Vector(1, 1, -8), b= Vector(9, 1, -8), c= Vector(1, 9, -8), color= Vector(255, 215, 0))
-		# triangle_back_2 = Triangle(a= Vector(9, 9, -8), b= Vector(9, 1, -8), c= Vector(1, 9, -8), color= Vector(255, 215, 0))
-
-		# triangle_right_1 = Triangle(a= Vector(9, 9, -8), b= Vector(9, 1, -8), c= Vector(9, 1, 0), color= Vector(205, 205, 201))
-		# triangle_right_2 = Triangle(a= Vector(9, 9, -8), b= Vector(9, 1, 0), c= Vector(9, 9, 0), color= Vector(205, 205, 201))
-
-		# triangle_top_1 = Triangle(a= Vector(1, 9, -8), b= Vector(9, 9, -8), c= Vector(1, 9, 0), color= Vector(176, 224, 230))
-		# triangle_top_2 = Triangle(a= Vector(1, 9, 0), b= Vector(9, 9, 0), c= Vector(9, 9, -8), color= Vector(176, 224, 230))
-
-		# triangle_left_1 = Triangle(a= Vector(1, 1, -8), b= Vector(1, 9, -8), c= Vector(1, 1, 0), color= Vector(255, 69, 0))
-		# triangle_left_2 = Triangle(a= Vector(1, 1, 0), b= Vector(1, 9, -8), c= Vector(1, 9, 0), color= Vector(255, 69, 0))
-
-		# triangle_bottom_1 = Triangle(a= Vector(1, 1, -8), b= Vector(9, 1, -8), c= Vector(1, 1, 0), color= Vector(70, 130, 180), material="mirror")
-		# triangle_bottom_2 = Triangle(a= Vector(1, 1, 0), b= Vector(9, 1, 0), c= Vector(9, 1, -8), color= Vector(70, 130, 180), material="mirror")
-
-
-		# cornell box components
-		triangle_back_1 = Triangle(a= Vector(0, 0, 10), b= Vector(10, 0, 10), c= Vector(0, 10, 10), color= Vector(255, 215, 0))
-		triangle_back_2 = Triangle(a= Vector(0, 10, 10), b= Vector(10, 0, 10), c= Vector(10, 10, 10), color= Vector(255, 215, 0))
-
-		triangle_right_1 = Triangle(a= Vector(10, 10, 10), b= Vector(10, 0, 10), c= Vector(10, 0, 0), color= Vector(205, 205, 201))
-		triangle_right_2 = Triangle(a= Vector(10, 10, 10), b= Vector(10, 0, 0), c= Vector(10, 10, 0), color= Vector(205, 205, 201))
-
-		triangle_top_1 = Triangle(a= Vector(0, 10, 10), b= Vector(10, 10, 10), c= Vector(0, 10, 0), color= Vector(176, 224, 230))
-		triangle_top_2 = Triangle(a= Vector(0, 10, 0), b= Vector(10, 10, 0), c= Vector(10, 10, 10), color= Vector(176, 224, 230))
-
-		triangle_left_1 = Triangle(a= Vector(0, 0, 10), b= Vector(0, 10, 10), c= Vector(0, 0, 0), color= Vector(255, 69, 0))
-		triangle_left_2 = Triangle(a= Vector(0, 0, 0), b= Vector(0, 10, 10), c= Vector(0, 10, 0), color= Vector(255, 69, 0))
-
-		triangle_bottom_1 = Triangle(a= Vector(0, 0, 10), b= Vector(10, 0, 10), c= Vector(0, 0, 0), color= Vector(70, 130, 180))
-		triangle_bottom_2 = Triangle(a= Vector(0, 0, 0), b= Vector(10, 0, 0), c= Vector(10, 0, 10), color= Vector(70, 130, 180))
+		triangle_back_1 = Triangle(a= Vector(0, 0, 10), b= Vector(20, 0, 10), c= Vector(0, 20, 10), color= Vector(247, 195, 49))
+		triangle_right_1 = Triangle(a= Vector(10, 20, 0), b= Vector(10, 0, 20), c= Vector(10, 0, 0), color= Vector(70, 130, 180))
+		triangle_top_1 = Triangle(a= Vector(0, 10, 0), b= Vector(20, 10, 0), c= Vector(0, 10, 20), color= Vector(176, 224, 230))
+		triangle_left_1 = Triangle(a= Vector(0, 0, 0), b= Vector(0, 0, 20), c= Vector(0, 20, 0), color= Vector(215, 57, 37))
+		triangle_bottom_1 = Triangle(a= Vector(0, 0, 0), b= Vector(20, 0, 0), c= Vector(0, 0, 20), color= Vector(205, 205, 201))
+		
 
 
 		for prim in self.primitives:
@@ -73,17 +40,11 @@ class RayTracer():
 
 		# appending cornell box componenet to the list_of_primitives  
 		self.list_of_primitives.append(triangle_back_1)
-		self.list_of_primitives.append(triangle_back_2)
 		self.list_of_primitives.append(triangle_right_1)
-		self.list_of_primitives.append(triangle_right_2)
 		self.list_of_primitives.append(triangle_top_1)
-		self.list_of_primitives.append(triangle_top_2)
 		self.list_of_primitives.append(triangle_left_1)
-		self.list_of_primitives.append(triangle_left_2)
 		self.list_of_primitives.append(triangle_bottom_1)
-		self.list_of_primitives.append(triangle_bottom_2)
-
-
+	
 		#calculate ambient illumination for the point_light
 		self.ambient = self.lights[0].ambient_illumination()
 
