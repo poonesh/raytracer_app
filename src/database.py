@@ -7,7 +7,6 @@ from flask_login import UserMixin
 def get_database(app):
 	db = SQLAlchemy(app)
 	app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:NewDatabase@localhost/user_data'
-	# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/Pooneh/projects/applications/RayTracer_app/ray_tracer_app_flask/test.db'
 	SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 	# create table
