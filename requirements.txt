@@ -1,4 +1,10 @@
 Flask==0.10.1
 Flask_SocketIO
 celery==4.0.2
-amqp
+gevent
+flask-login
+flask-bootstrap
+sqlalchemy
+Flask-SQLAlchemy
+Pillow
+flask-wtf
