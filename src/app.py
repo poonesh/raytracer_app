@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/Pooneh/projects/applications/RayTracer_app/raytracer_app_flask/render_primitives')
+sys.path.append('/Users/Pooneh/projects/applications/raytracer_app/render_primitives')
 
 import gevent.monkey, gevent.socket
 import socket
