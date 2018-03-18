@@ -1,10 +1,10 @@
 import re
-from Vector import Vector
-from Sphere import Sphere
-from Triangle import Triangle
-from PointLight import PointLight
-from Screen2D import Screen2D
-from RayTracer import RayTracer
+from render_primitives.Vector import Vector
+from render_primitives.Sphere import Sphere
+from render_primitives.Triangle import Triangle
+from render_primitives.PointLight import PointLight
+from render_primitives.Screen2D import Screen2D
+from render_primitives.RayTracer import RayTracer
 
 
 #helper function to use regex in order to read tuple (vector) elements which is given as a string

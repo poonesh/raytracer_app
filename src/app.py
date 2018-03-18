@@ -1,6 +1,3 @@
-import sys
-sys.path.append('/Users/Pooneh/projects/applications/raytracer_app/render_primitives')
-
 import gevent.monkey, gevent.socket
 import socket
 gevent.monkey.patch_all()
@@ -21,12 +18,12 @@ from database import get_database
 from app_helper_functions import vectorElem, readDynamicForm
 from forms import *
 
-from Vector import Vector
-from Sphere import Sphere
-from Triangle import Triangle
-from PointLight import PointLight
-from Screen2D import Screen2D
-from RayTracer import RayTracer
+from render_primitives.Vector import Vector
+from render_primitives.Sphere import Sphere
+from render_primitives.Triangle import Triangle
+from render_primitives.PointLight import PointLight
+from render_primitives.Screen2D import Screen2D
+from render_primitives.RayTracer import RayTracer
 
 
 # create a Flask instance and initialize the flask application
