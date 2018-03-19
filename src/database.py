@@ -10,7 +10,7 @@ def get_database(app):
 	SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 	# create table
-	class User(UserMixin, db.Model):
+	class Users(UserMixin, db.Model):
 	    id = db.Column(db.Integer, primary_key=True)
 	    username = db.Column(db.String(15), unique=True)
 	    email = db.Column(db.String(50), unique=True)
@@ -20,7 +20,7 @@ def get_database(app):
 	class UserImage(db.Model):
 		id = db.Column(db.Integer, primary_key=True)
 		image = db.Column(db.LargeBinary)
-		user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+		user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
-	return (db, User, UserImage)
+	return (db, Users, UserImage)
