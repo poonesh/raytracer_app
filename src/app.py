@@ -124,7 +124,7 @@ def profile_page():
 
 
 @celery.task(name='task.result')
-def final_result(light_position, image_size, ambient_illumination, dynamicFormData, username):
+def final_result(light_position, image_size, ambient_illumination, dynamicFormData, username, room):
 	"""A set of parameters are passed to final_result function to create an instance of RayTracer class(raytracer). Then the method 
 	render_image() from this class is used to calculate the precentage progress of the rendered_image. call_back_func_send_image()
 	also save the image as URI data and pass it to front end through socketio. This call_back function also save the URI data of the 
@@ -138,7 +138,7 @@ def final_result(light_position, image_size, ambient_illumination, dynamicFormDa
 	socketio = SocketIO(engineio_logger=True, ping_timeout=120, message_queue='amqp://')
 	
 	def call_back_func_progress_percentage(perc):
-		socketio.emit('send_prog_perc', {'data':perc})
+		socketio.emit('send_prog_perc', {'data':perc}, namespace='/result', room=room)
 	
 	def call_back_func_send_image(image):
 		my_buffer = cStringIO.StringIO() # using cStringIO in order to be able to save the image as an string
@@ -147,7 +147,7 @@ def final_result(light_position, image_size, ambient_illumination, dynamicFormDa
 		image = UserImage(image=encoded_string, drawer=image_owner)
 		db.session.add(image)
 		db.session.commit()
-		socketio.emit('send_image', {'data':encoded_string})
+		socketio.emit('send_image' ,{'data':encoded_string}, namespace='/result', room=room)
 
 	raytracer.render_image(call_back_func_progress_percentage, call_back_func_send_image)
 
@@ -157,14 +157,29 @@ jQuery sending data to the ('/result') endpoint and function result pass this da
 and pass it to message broker(rabbitmq) to annonce that I have a new task for celery worker (which is supposed to be done asynchronously). 
 Then the result function will return a dictionary {"status":200} to confirm that the task has been passed to celery and nothing has broken.
 """
-@app.route('/result', methods=['POST'])
-def result():
-	light_position = request.json["lightPosition"]
-	image_size = int(request.json["imageSize"])
-	ambient_illumination = float(request.json["ambIllumination"])
-	dynamicFormData = request.json["dynamicForm"]
-	final_result.delay(light_position, image_size, ambient_illumination, dynamicFormData, current_user.username)
-	return jsonify({"status": 200})
+# @app.route('/result', methods=['POST'])
+# def result():
+# 	light_position = request.json["lightPosition"]
+# 	image_size = int(request.json["imageSize"])
+# 	ambient_illumination = float(request.json["ambIllumination"])
+# 	dynamicFormData = request.json["dynamicForm"]
+# 	session_id = request.sid
+# 	room = session_id
+# 	join_room(room)
+# 	final_result.delay(light_position, image_size, ambient_illumination, dynamicFormData, current_user.username, room)
+# 	return jsonify({"status": 200})
+
+
+@socketio.on('submit_data', namespace='/result')
+def result_handler(data):
+	light_position = data['lightPosition']
+	image_size = int(data['imageSize'])
+	ambient_illumination = float(data['ambIllumination'])
+	dynamicFormData = data['dynamicForm']
+	session_id = request.sid
+	room = session_id
+	join_room(room)
+	final_result.delay(light_position, image_size, ambient_illumination, dynamicFormData, current_user.username, room)
 
 
 if __name__ == '__main__':

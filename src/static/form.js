@@ -117,34 +117,34 @@ $(document).on('change', '[id^=primitive-selector]', function() {
 });
 
 
-function testFunction(){
-	var flask_sent_all_data_dict = {};
-	flask_sent_all_data_dict["imageSize"] = 128;
-	flask_sent_all_data_dict["lightPosition"] = "(2, 6.5, -2)";
-	flask_sent_all_data_dict["ambIllumination"] = 0.11;
-	flask_sent_all_data_dict["dynamicForm"] = [{'sphere':{'color':'(255, 0, 0)', 'material':'mirror', 'radius':'1', 'sphere-position':'(4, 4, -6)'}}];
+// function testFunction(){
+// 	var flask_sent_all_data_dict = {};
+// 	flask_sent_all_data_dict["imageSize"] = 128;
+// 	flask_sent_all_data_dict["lightPosition"] = "(2, 6.5, -2)";
+// 	flask_sent_all_data_dict["ambIllumination"] = 0.11;
+// 	flask_sent_all_data_dict["dynamicForm"] = [{'sphere':{'color':'(255, 0, 0)', 'material':'mirror', 'radius':'1', 'sphere-position':'(4, 4, -6)'}}];
 
-	$.ajax({
-		type: 'POST',
-		url: '/result',
-		data: JSON.stringify(flask_sent_all_data_dict),
-		dataType: 'json',
-		contentType: 'application/json; charset=utf-8',
-		success: function (msg) {
-    		console.log(msg);
-		},
-		failure: function (errMsg) {
-    		console.log(errMsg);
-		},
-		error: function (errMsg) {
-    		console.log(errMsg);
-		}
+// 	$.ajax({
+// 		type: 'POST',
+// 		url: '/result',
+// 		data: JSON.stringify(flask_sent_all_data_dict),
+// 		dataType: 'json',
+// 		contentType: 'application/json; charset=utf-8',
+// 		success: function (msg) {
+//     		console.log(msg);
+// 		},
+// 		failure: function (errMsg) {
+//     		console.log(errMsg);
+// 		},
+// 		error: function (errMsg) {
+//     		console.log(errMsg);
+// 		}
 
-	});
+// 	});
 
 
-	return false;
+// 	return false;
 
-}
+// }
 
 

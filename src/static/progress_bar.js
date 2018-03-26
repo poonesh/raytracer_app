@@ -9,17 +9,13 @@ $(document).ready(function() {
 	Also, requestAnimatinFrame() is asynchronous, so the app can still be used while the progress bar is loading.
 	 */
 	
+	namespace = '/result';
 	// define socket
-	console.log("location.protocol", location.protocol);
-	console.log("document.domain", document.domain);
-	console.log("location.port", location.port);
-
-	var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+	var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
 
 	window.socket = socket; // window is a global object and we put socket as a variable in the global object
 
-	socket.on('send_prog_perc', function(data) {
-		console.log(data.data);
+	socket.on('send_prog_perc', function(data){
 		var elem = document.getElementById("progress");
 		var counter = data.data-25;
 		function progress(){
@@ -34,6 +30,7 @@ $(document).ready(function() {
 
 	// URI data of the image is sent to the front end through socketio
     socket.on('send_image', function(data) {
+
 	// to set image source with base 64, setAttribute has been used.
     	document.getElementById('primitives-image').setAttribute('src', 'data:image/png;base64,'+ data.data);
     	document.getElementById('glyphicon-modal-trigger').style.visibility = 'visible';
