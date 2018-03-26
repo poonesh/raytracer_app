@@ -7,7 +7,7 @@ from flask_login import UserMixin
 def get_database(app):
 	db = SQLAlchemy(app)
 	app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:NewDatabase@localhost/user_data'
-	SQLALCHEMY_TRACK_MODIFICATIONS = True
+	SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 	# create table
 	class Users(UserMixin, db.Model):

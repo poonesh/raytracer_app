@@ -29,7 +29,7 @@ from render_primitives.RayTracer import RayTracer
 # create a Flask instance and initialize the flask application
 app = Flask(__name__)
 socketio, celery = set_config(app)
-db, User, UserImage = get_database(app)
+db, Users, UserImage = get_database(app)
 Bootstrap(app)
 
 class Anonymous(AnonymousUserMixin):
@@ -45,12 +45,13 @@ class Anonymous(AnonymousUserMixin):
 login_manager = LoginManager()
 login_manager.init_app(app) #passing app to login_manager for configuration
 login_manager.anonymous_user = Anonymous
-login_manager.login_view = 'login' #if I want to use a @login_required decorator, login_manager.login_view 
-# is also required. Not in this app though.
+login_manager.login_view = 'login' #if I want to use a @login_required decorator, login_manager.login_view is also required. 
 
+
+# we use user_loader callback. This callback is used to reload the user object from the user ID stored in the session. 
 @login_manager.user_loader
-def load_user(user_id): # the load_user model connects the abstract user of flask-login to the user model database behind the scene
-	return User.query.get(int(user_id)) # note that the user_id is saved as unicode which needs to be converted to an integer 
+def load_user(user_id): 
+	return Users.query.get(int(user_id)) # note that the user_id is saved as unicode which needs to be converted to an integer 
 
 @app.before_request
 def before_request():
@@ -72,20 +73,19 @@ def login():
 	if form.validate_on_submit():
 		# Login and validate the user.
 		# user should be an instance of the user class
-		user = User.query.filter_by(username=form.username.data).first()
+		user = Users.query.filter_by(username=form.username.data).first()
 		if user:
-			login_user(user)
 			if check_password_hash(user.password, form.password.data):
 				# user.password is the hashed password
 				# form.password.data is the plaintext password
 				# return True if the password matches and Flase otherwis
 				if login_user(user):
 					flash('You just logged in!')
-					return redirect(url_for('user'))
+					return redirect(url_for('profile_page'))
 		else:
 			flash('Error logging in!')
 			return redirect(url_for('login'))
-	return render_template('login.html', form=form) # how we are redirect to the login form again????????
+	return render_template('login.html', form=form)
 
 
 @app.route('/signup', methods=['GET','POST'])
@@ -93,9 +93,9 @@ def signup():
 	form = RegisterForm()
 	if form.validate_on_submit():
 		hashed_password = generate_password_hash(form.password.data, method="sha256")
-		new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-		db.session.add(new_user)
-		db.session.commit()
+		new_user = Users(username=form.username.data, email=form.email.data, password=hashed_password)
+		db.session.add(new_user) #adding new python object to the session
+		db.session.commit()		 #commiting the session to the database
 		flash('You just signed up!')
 		return redirect(url_for('my_form'))
 	return render_template('signup.html', form=form)
@@ -110,16 +110,16 @@ def logout():
 
 @app.route('/profile')
 @login_required
-def user():
+def profile_page():
 	username = current_user.username
 	flash('Welcome, %s' %username)
 	id = current_user.id
 	#writing SQL query in SQLAlchemy
 	sql = text('select image from "user_image" where user_id='+str(id))
-	result = db.engine.execute(sql)
+	user_images = db.engine.execute(sql)
 	images = []
-	for res in result:
-		images.append(res[0])
+	for image in user_images:
+		images.append(image[0])
 	return render_template('profile.html', images=images)
 
 
@@ -130,7 +130,7 @@ def final_result(light_position, image_size, ambient_illumination, dynamicFormDa
 	also save the image as URI data and pass it to front end through socketio. This call_back function also save the URI data of the 
 	rendred image in SQLAlchemy."""
 
-	owner = User.query.filter_by(username=username).first()
+	image_owner = Users.query.filter_by(username=username).first()
 	x, y, z = vectorElem(light_position)
 	primitiveObjs = readDynamicForm(dynamicFormData)
 	pointlight = PointLight(position=Vector(x, y, z), color=Vector(255, 255, 255), Ka=ambient_illumination) 
@@ -144,7 +144,7 @@ def final_result(light_position, image_size, ambient_illumination, dynamicFormDa
 		my_buffer = cStringIO.StringIO() # using cStringIO in order to be able to save the image as an string
 		image.save(my_buffer, format="JPEG")
 		encoded_string = base64.b64encode(my_buffer.getvalue())
-		image = UserImage(image=encoded_string, drawer=owner)
+		image = UserImage(image=encoded_string, drawer=image_owner)
 		db.session.add(image)
 		db.session.commit()
 		socketio.emit('send_image', {'data':encoded_string})
@@ -160,8 +160,6 @@ Then the result function will return a dictionary {"status":200} to confirm that
 @app.route('/result', methods=['POST'])
 def result():
 	light_position = request.json["lightPosition"]
-	# if vectorElem(light_position) is None:
-	# 	return jsonify({"status": 500, "message": "Light Position Format Incorrect"})
 	image_size = int(request.json["imageSize"])
 	ambient_illumination = float(request.json["ambIllumination"])
 	dynamicFormData = request.json["dynamicForm"]

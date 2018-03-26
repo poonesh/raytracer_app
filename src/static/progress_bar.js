@@ -10,9 +10,13 @@ $(document).ready(function() {
 	 */
 	
 	// define socket
+	console.log("location.protocol", location.protocol);
+	console.log("document.domain", document.domain);
+	console.log("location.port", location.port);
+
 	var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
-	window.socket = socket;
+	window.socket = socket; // window is a global object and we put socket as a variable in the global object
 
 	socket.on('send_prog_perc', function(data) {
 		console.log(data.data);
