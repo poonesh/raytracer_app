@@ -14,7 +14,17 @@ function getHTMLString(formCount) {
                 '<input type="text" class="vertex-A form-control" id="A-position'+ formCount +'" name="VerticeAPosition'+ formCount +'" placeholder="vertex(x, y, z)" size="13"> ',
               	'<input type="text" class="vertex-B form-control" id="B-position'+ formCount +'" name="VerticeBPosition'+ formCount +'" placeholder="vertex(x, y, z)" size="13"> ',
               	'<input type="text" class="vertex-C form-control" id="C-position'+ formCount +'" name="VerticeCPosition'+ formCount +'" placeholder="vertex(x, y, z)" size="13"> ',
-                '<input type="text" class="sphere-color form-control" id="color'+ formCount +'" name="ColorSelect'+ formCount +'" placeholder="color(255, 255, 255)" size="17"> ',
+                // '<input type="text" class="sphere-color form-control" id="color'+ formCount +'" name="ColorSelect'+ formCount +'" placeholder="color(255, 255, 255)" size="17"> ',
+		        
+                '<select class="color-selector input-small form-control" id="color-selector0" name="ColorSelect">',
+                    '<option value=" " disabled="" selected="">color</option>',
+                    '<option value=(255, 0, 0)>red</option>',
+                    '<option value=(0, 255, 0)>blue</option>',
+                    '<option value=(0, 0, 255)>green</option>',
+                    '<option value=(255, 255, 255)>white</option>',
+                    '<option value=(0, 0, 0)>black</option>',
+                '</select> ',
+
 		        '<select class="material-selector input-small form-control" id="material-selector'+ formCount +'" name="MaterialSelect'+ formCount +'"> ',
 	                '<option value=" " disabled="" selected="">material</option>',
 	                '<option value="normal">opaque</option>',
@@ -47,7 +57,7 @@ function createTriangleParameter(index, id_value_dict){
 				temp_dict["vertexB"] = id_value_dict[key];
 			} else if (key === "#C-position"+index){
 				temp_dict["vertexC"] = id_value_dict[key];
-			} else if (key === "#color"+index){
+			} else if (key === "#color-selector"+index){
 				temp_dict["color"] = id_value_dict[key];
 			} else if (key === "#material-selector"+index){
 				temp_dict["material"] = id_value_dict[key];
@@ -75,8 +85,9 @@ function createSphereParameter(index, id_value_dict){
 				temp_dict["radius"] = id_value_dict[key];	
 			} else if (key === "#sphere-position"+index){
 				temp_dict["sphere-position"] = id_value_dict[key];
-			} else if (key === "#color"+index){
+			} else if (key === "#color-selector"+index){
 				temp_dict["color"] = id_value_dict[key];
+				console.log("temp_dict[color]", temp_dict["color"]);
 			} else if (key === "#material-selector"+index){
 				temp_dict["material"] = id_value_dict[key];
 			}			 

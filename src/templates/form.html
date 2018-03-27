@@ -21,7 +21,7 @@
     <script type="text/javascript"  src = "{{ url_for('static', filename='form.js')}}"></script> 
     <script type="text/javascript"  src = "{{ url_for('static', filename='progress_bar.js')}}"></script> 
     <script type="text/javascript"  src = "{{ url_for('static', filename='modal.js')}}"></script> 
-    <script type="text/javascript"  src = "{{ url_for('static', filename='ajax.js')}}"></script>
+    <script type="text/javascript"  src = "{{ url_for('static', filename='handle_form_data.js')}}"></script>
     <script type="text/javascript"  src = "{{ url_for('static', filename='property_form_validation.js')}}"></script>
   <!--script type="text/javascript" src="/socket.io/socket.io.js"></script-->
   </head>
@@ -142,7 +142,15 @@
                       <input type="text" class="vertex-A form-control" id="A-position0" name="VerticeAPosition" placeholder="vertex(x, y, z)" size="13ss">
                       <input type="text" class="vertex-B form-control" id="B-position0" name="VerticeBPosition" placeholder="vertex(x, y, z)" size="13">
                       <input type="text" class="vertex-C form-control" id="C-position0" name="VerticeCPosition" placeholder="vertex(x, y, z)" size="13">
-                      <input type="text" class="sphere-color form-control" id="color0" name="ColorSelect" placeholder="color(255, 255, 255)" size="17">
+                      <!-- <input type="text" class="sphere-color form-control" id="color0" name="ColorSelect" placeholder="color" size="17"> -->
+                      <select class="color-selector input-small form-control" id="color-selector0" name="ColorSelect">
+                        <option value=" " disabled="" selected="">color</option>
+                        <option value="(255, 0, 0)">red</option>
+                        <option value="(0, 255, 0)">green</option>
+                        <option value="(0, 0, 255)">blue</option>
+                        <option value="(255, 255, 255)">white</option>
+                        <option value="(0, 0, 0)">black</option>
+                      </select>
                       <select class="material-selector input-small form-control" id="material-selector0" name="MaterialSelect">
                         <option value=" " disabled="" selected="">material</option>
                         <option value="normal">opaque</option>

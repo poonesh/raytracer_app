@@ -27,6 +27,7 @@ def readDynamicForm(dynamicFormData):
 				sphere_position = item[key]['sphere-position']
 				pos_x, pos_y, pos_z = vectorElem(sphere_position)
 				color = str(item[key]['color'])
+				print ("colorrrrrrr", color)
 				R, G, B = vectorElem(color)
 				radius = float(item[key]['radius'])
 				material = str(item[key]['material'])
@@ -46,3 +47,5 @@ def readDynamicForm(dynamicFormData):
 				triangle = Triangle(a=Vector(verA_x, verA_y, verA_z), b=Vector(verB_x, verB_y, verB_z), c=Vector(verC_x, verC_y, verC_z), color=Vector(R, G, B), ka=0, kd=0, material=material)
 				primitiveObjs.append(triangle)
 	return primitiveObjs
+
+
