@@ -67,7 +67,7 @@ function testFunction(){
 	flask_sent_all_data_dict["imageSize"] = 128;
 	flask_sent_all_data_dict["lightPosition"] = "(2, 6.5, -2)";
 	flask_sent_all_data_dict["ambIllumination"] = 0.11;
-	flask_sent_all_data_dict["dynamicForm"] = [{'sphere':{'color':'blue', 'material':'mirror', 'radius':'1', 'sphere-position':'(4, 4, 6)'}}];
+	flask_sent_all_data_dict["dynamicForm"] = [{'sphere':{'color': '(0, 0, 255)', 'material':'mirror', 'radius':'1', 'sphere-position':'(4, 4, 6)'}}];
 	window.socket.emit('submit_data', flask_sent_all_data_dict);
 }
 

@@ -27,7 +27,6 @@ def readDynamicForm(dynamicFormData):
 				sphere_position = item[key]['sphere-position']
 				pos_x, pos_y, pos_z = vectorElem(sphere_position)
 				color = str(item[key]['color'])
-				print ("colorrrrrrr", color)
 				R, G, B = vectorElem(color)
 				radius = float(item[key]['radius'])
 				material = str(item[key]['material'])
