@@ -120,7 +120,6 @@ $(document).ready(function() {
 					}
 				});
 			});
-         	console.log("checking if you are here too!");
 			$('input.vertex-B').each(function(){
 				$(this).rules('add', {
 					required: true, 
