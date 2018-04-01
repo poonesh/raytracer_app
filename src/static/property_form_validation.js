@@ -5,13 +5,10 @@ $(document).ready(function() {
         function(value) {
             var coordinates = value.substring(1, value.length-1);
             var numbers = coordinates.split(',');
-            console.log(numbers);
-            console.log(numbers.length);
             if (numbers.length != 3){
             	return false;
             }
             for (var i=0; i<numbers.length; i++){
-            	console.log(!isNaN(Number(numbers[i])));
             	if(!isNaN(Number.parseFloat(numbers[i]))){
 					valid = true;
             	}else{
@@ -28,7 +25,7 @@ $(document).ready(function() {
 	$('#the-form').validate({
 		rules:{
 			Radius: {
-				required: true			
+				required: true
 			},
 			SpherePosition:{
 				required: true,	regex: true
@@ -40,9 +37,6 @@ $(document).ready(function() {
 				required: true, regex: true
 			},
 			VerticeCPosition:{
-				required: true, regex: true
-			},
-			ColorSelect:{
 				required: true, regex: true
 			},
 			LightPosition:{
@@ -68,9 +62,6 @@ $(document).ready(function() {
 			},
 			SpherePositon:{
 				required: "Vertex position is required."
-			},
-			ColorSelect:{
-				required: "Color is required."
 			},
 			LightPosition:{
 				required: "Light position is required."
@@ -150,10 +141,9 @@ $(document).ready(function() {
 				});
 			});
 
-			$('input.sphere-color').each(function(){
+			$('select.sphere-color').each(function(){
 				$(this).rules('add', {
-					required: true, 
-					regex: true,
+					required: true,
 					messages:{
 						required: "Color is required."
 					}
@@ -182,10 +172,11 @@ $(document).ready(function() {
 			$('input.radius').each(function(){
 				$(this).rules('add', {
 					required: true,
-					message: "Radius field is required."
+					messages:{ 
+						required: "Radius field is required."
+				    }	
 				});
 			});
-
          	var TselectorString = '#A-position'+ formCount + ', #B-position'+ formCount + ', #C-position'+ formCount; 
     		var SselectorString = '#radius'+ formCount + ', #sphere-position'+ formCount;
 			$(TselectorString).toggle(false);

@@ -9,3 +9,5 @@ vertices, position, color and even material of the objects in the scene.
 4. Open a third terminal window and starta Celery worker: `$ celery worker -A app.celery --loglevel=info`.
 5. Start the Flask application on your original terminal window:`$ python app.py`.  
 6. Finally, go to `http://localhost:5000/`.
+
+![cornell box] (./cornell-box.png)

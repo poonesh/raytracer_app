@@ -16,13 +16,13 @@ function getHTMLString(formCount) {
               	'<input type="text" class="vertex-C form-control" id="C-position'+ formCount +'" name="VerticeCPosition'+ formCount +'" placeholder="vertex(x, y, z)" size="13"> ',
                 // '<input type="text" class="sphere-color form-control" id="color'+ formCount +'" name="ColorSelect'+ formCount +'" placeholder="color(255, 255, 255)" size="17"> ',
 		        
-                '<select class="color-selector input-small form-control" id="color-selector0" name="ColorSelect">',
+                '<select class="sphere-color input-small form-control" id="color' + formCount +'" name="ColorSelect">',
                     '<option value=" " disabled="" selected="">color</option>',
-                    '<option value=(255, 0, 0)>red</option>',
-                    '<option value=(0, 255, 0)>green</option>',
-                    '<option value=(0, 0, 255)>blue</option>',
-                    '<option value=(255, 255, 255)>white</option>',
-                    '<option value=(0, 0, 0)>black</option>',
+                    '<option value="(255, 91, 91)">red</option>',
+                    '<option value="(107, 142, 35)">green</option>',
+                    '<option value="(32, 38, 114)">blue</option>',
+                    '<option value="(255, 255, 255)">white</option>',
+                    '<option value="(0, 0, 0)">black</option>',
                 '</select> ',
 
 		        '<select class="material-selector input-small form-control" id="material-selector'+ formCount +'" name="MaterialSelect'+ formCount +'"> ',
@@ -57,7 +57,7 @@ function createTriangleParameter(index, id_value_dict){
 				temp_dict["vertexB"] = id_value_dict[key];
 			} else if (key === "#C-position"+index){
 				temp_dict["vertexC"] = id_value_dict[key];
-			} else if (key === "#color-selector"+index){
+			} else if (key === "#color"+index){
 				temp_dict["color"] = id_value_dict[key];
 			} else if (key === "#material-selector"+index){
 				temp_dict["material"] = id_value_dict[key];
@@ -80,14 +80,12 @@ function createSphereParameter(index, id_value_dict){
 	var sphere_dict = {};
 	for (var key in id_value_dict){
 		if (key[key.length-1] == index){
-			console.log("create_sphere_parameter",key[key.length-1])
 			if (key === "#radius"+index){
 				temp_dict["radius"] = id_value_dict[key];	
 			} else if (key === "#sphere-position"+index){
 				temp_dict["sphere-position"] = id_value_dict[key];
-			} else if (key === "#color-selector"+index){
+			} else if (key === "#color"+index){
 				temp_dict["color"] = id_value_dict[key];
-				console.log("temp_dict[color]", temp_dict["color"]);
 			} else if (key === "#material-selector"+index){
 				temp_dict["material"] = id_value_dict[key];
 			}			 
