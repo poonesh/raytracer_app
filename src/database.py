@@ -1,4 +1,4 @@
-
+import os
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
@@ -6,7 +6,8 @@ from flask_login import UserMixin
 
 def get_database(app):
 	db = SQLAlchemy(app)
-	app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:NewDatabase@localhost/user_data'
+	password = os.environ['POSTGRES_PWD']
+	app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:'+ password + '@localhost/user_data'
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 	# create table
