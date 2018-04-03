@@ -60,7 +60,7 @@ def before_request():
 # set homepage to form.htm
 @app.route('/')
 def my_form():
-    return render_template("form.html")
+    return render_template('form.html')
 
 # route for handling login page
 @app.route('/login', methods=['GET', 'POST'])
@@ -80,10 +80,10 @@ def login():
 				# form.password.data is the plaintext password
 				# return True if the password matches and Flase otherwis
 				if login_user(user):
-					flash('You just logged in!')
+					flash('You just logged in!', 'login_message')
 					return redirect(url_for('profile_page'))
 		else:
-			flash('Error logging in!')
+			flash('Error logging in!', 'login_message_error')
 			return redirect(url_for('login'))
 	return render_template('login.html', form=form)
 
@@ -92,19 +92,25 @@ def login():
 def signup():
 	form = RegisterForm()
 	if form.validate_on_submit():
-		hashed_password = generate_password_hash(form.password.data, method="sha256")
-		new_user = Users(username=form.username.data, email=form.email.data, password=hashed_password)
-		db.session.add(new_user) #adding new python object to the session
-		db.session.commit()		 #commiting the session to the database
-		flash('You just signed up!')
-		return redirect(url_for('my_form'))
+		already_username = Users.query.filter_by(username=form.username.data).first()
+		already_email = Users.query.filter_by(email=form.email.data).first()
+		if already_username or already_email: 
+			flash('username or email address taken', 'signup_unique_error')
+			return redirect(url_for('signup'))
+		else:
+			hashed_password = generate_password_hash(form.password.data, method="sha256")
+			new_user = Users(username=form.username.data, email=form.email.data, password=hashed_password)	
+			db.session.add(new_user) #adding new python object to the session
+			db.session.commit()		 #commiting the session to the database
+			flash('You just signed up!', 'signup_message')
+			return redirect(url_for('my_form'))
 	return render_template('signup.html', form=form)
 
 
 @app.route('/logout')
 def logout():
 	logout_user()
-	flash('You just logged out!')
+	flash('You just logged out!', 'logout_message')
 	return redirect(url_for('my_form'))
 
 
@@ -112,7 +118,7 @@ def logout():
 @login_required
 def profile_page():
 	username = current_user.username
-	flash('Welcome, %s' %username)
+	flash('Welcome, %s' %username, 'user_profile_message')
 	id = current_user.id
 	#writing SQL query in SQLAlchemy
 	sql = text('select image from "user_image" where user_id='+str(id))
@@ -120,6 +126,7 @@ def profile_page():
 	images = []
 	for image in user_images:
 		images.append(image[0])
+		flash('images', 'image_message')
 	return render_template('profile.html', images=images)
 
 

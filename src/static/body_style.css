@@ -35,21 +35,55 @@ body
   padding: 15px 15px;
 }
 
-/*color of flask flash_messages and error message */
-.logout_message
+/*color of the forms labels (SignUp, Login, Logout)*/
+.login-form-label
 {
-  color:#fff;
-  padding: 3px 10px 3px 1250px;
+  color: #fff;
 }
 
+.signup-form-label
+{
+  color: #fff;
+}
+
+form label
+{
+  color: #fff;
+}
+
+/*color of flask flash_messages and error message */
 .login_message
 {
-  color:#fff;
-  padding: 3px 10px 3px 1250px;
+  color: #fff;
 }
 
-.error_message
+.login_message_error
 {
-  color:#fff;
+  color: #ff0000;
+}
+
+.logout_message
+{
+  color: #fff; 
+}
+
+.signup_message
+{
+  color: #fff;
+}
+
+.signup_unique_error
+{
+  color: #ff0000;
+}
+
+.user_profile_message
+{
+  color: #fff;
+}
+
+.image_message
+{
+  color: #fff;
 }
 
