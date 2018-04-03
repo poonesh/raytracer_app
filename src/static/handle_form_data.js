@@ -3,6 +3,9 @@ $(document).ready(function(){
 
 	$('#the-form').on('submit', function(e) {
     	e.preventDefault();
+    	// reset progress bar after rendering an image and sending progress report
+    	var elem = document.getElementById("progress");
+    	elem.style.width = 0
      	var id_value_dict = {};
 	 	/* querySelectorAll returns all the children of ('div.form-inline > *'). Then creates an object(dictionary) with the keys(unique_ids) and 
 	 	values(values filled by the user) of all the children */  
