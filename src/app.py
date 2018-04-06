@@ -62,6 +62,10 @@ def before_request():
 def my_form():
     return render_template('form.html')
 
+@app.route('/example', methods=['GET', 'POST'])
+def example():
+	return render_template('example.html')
+
 # route for handling login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
