@@ -52,6 +52,12 @@ form label
 }
 
 /*color of flask flash_messages and error message */
+
+.message
+{
+  color: #fff;
+}
+
 .login_message
 {
   color: #fff;
