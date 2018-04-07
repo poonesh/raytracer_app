@@ -20,7 +20,7 @@ run:
 	cd src && python app.py
 
 production-celery:
-	cd src && nohup celery worker -A app.celery >/dev/null &
+	cd src && nohup celery worker -A app.celery >/dev/null 2>/dev/null &
 
 production-app:
-	cd src && nohup python app.py >/dev/null &
+	cd src && nohup python app.py >/dev/null 2>/dev/null &
