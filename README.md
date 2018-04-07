@@ -1,5 +1,5 @@
 # raytracer app(3D graphics)
-A simple raytracer app where the user can create a 3D image of geometric shapes by providing
+A raytracer app where the user can create a 3D image of geometric shapes by providing
 vertices, position, color and even material of the objects in the scene.
 
 ## Quick Setup
