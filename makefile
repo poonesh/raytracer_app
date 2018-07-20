@@ -28,7 +28,7 @@ production-app:
 	cd src && nohup python app.py >/dev/null 2>/dev/null &
 
 find-celery-process:
-	ps aw | grep celery
+	ps -ef | grep celery
 
 find-python-process:
-	ps aw | grep python
+	ps -ef | grep python
