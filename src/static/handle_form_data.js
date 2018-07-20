@@ -60,19 +60,27 @@ $(document).ready(function(){
 
 		window.socket.emit('submit_data', flask_sent_all_data_dict);
 
+
 		return false;
 	});
+
+
+	document.getElementById("example1").addEventListener("click", function example1(){
+		var flask_sent_all_data_dict = {};
+		flask_sent_all_data_dict["imageSize"] = 256;
+		flask_sent_all_data_dict["lightPosition"] = "(2, 6.5, -2)";
+		flask_sent_all_data_dict["ambIllumination"] = 0.11;
+		flask_sent_all_data_dict["dynamicForm"] = [{'sphere':{'color': 'red', 'material':'mirror', 'radius':'2', 'sphere-position':'(4, 2, 5)'}}];
+		$('#image-size-selector').val(256);
+		$('#light-position').val('(2, 6.5, -2)');
+		$('#ambient-illumination').val(0.11);
+		$('#radius0').val('2');
+		$('#sphere-position0').val('(4, 2, 5)');
+		$('#color0').val('(255, 91, 91)');
+		$('#material-selector0').val('mirror');
+		window.socket.emit('submit_data', flask_sent_all_data_dict);
+	});
 });
-
-
-function testFunction(){
-	var flask_sent_all_data_dict = {};
-	flask_sent_all_data_dict["imageSize"] = 128;
-	flask_sent_all_data_dict["lightPosition"] = "(2, 6.5, -2)";
-	flask_sent_all_data_dict["ambIllumination"] = 0.11;
-	flask_sent_all_data_dict["dynamicForm"] = [{'sphere':{'color': '(0, 0, 255)', 'material':'mirror', 'radius':'1', 'sphere-position':'(4, 4, 6)'}}];
-	window.socket.emit('submit_data', flask_sent_all_data_dict);
-}
 
 // window.testFunction = testFunction;
 
